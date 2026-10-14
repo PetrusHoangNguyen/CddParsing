@@ -1,23 +1,19 @@
-"""Parse a Vector CANdela Studio CDD file and export its diagnostic data to Excel.
+"""Parse a Vector CANdela Studio CDD file and export its diagnostic data to a simple XML file.
 
-The workbook has four sheets:
-    Service  every diagnostic service of every variant, with request bytes and access rights
-    DID      every data identifier, its length, data elements and read/write access
-    DTC      every DTC of every fault memory, with the DTC record fields
-    RID      every routine identifier with its sub-functions and parameters
+The XML has four sections:
+    Services  every diagnostic service of every variant, with request bytes and access rights
+    DIDs      every data identifier with its data elements, data types and read/write access
+    DTCs      every DTC of every fault memory, with the DTC record fields
+    RIDs      every routine identifier with its sub-functions and parameters
 
 Usage:
-    python cdd_parser.py <file.cdd> [-o <output.xlsx>]
+    python cdd_parser.py <file.cdd> [-o <output.xml>]
 """
 
 import argparse
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
-
-from openpyxl import Workbook
-from openpyxl.styles import Alignment, Font, PatternFill
-from openpyxl.utils import get_column_letter
 
 ROUTINE_CONTROL_SID = 0x31
 READ_DID_SID = 0x22
@@ -170,40 +166,37 @@ class CddFile:
                     yield text(self.ref(inst, "tmplref")), inst
 
     def parameters(self, diaginst):
-        """Return 'Proxy name: element, element' for each data block of an instance."""
+        """Return (group name, [element names]) for each data block of an instance."""
         out = []
         for cont in diaginst.findall("SIMPLECOMPCONT"):
             names = [text(e) for e in cont.iter("DATAOBJ")]
             if names:
-                out.append(f"{text(self.ref(cont, 'shproxyref'))}: {', '.join(names)}")
-        return "\n".join(out)
+                out.append((text(self.ref(cont, "shproxyref")), names))
+        return out
 
-    # ---------- sheet builders ----------
+    # ---------- XML builders ----------
 
     def services(self):
-        rows = []
+        section = ET.Element("Services")
         for variant in self.variants():
+            group = add(section, "Variant", name=text(variant))
             for diag_class, inst in self.diag_instances(variant):
                 for service in inst.findall("SERVICE"):
-                    proto = self.protocol_service(service)
                     sid, request = self.request_bytes(inst, service)
                     sessions, security = self.access(service)
                     addressing = [a for a, flag in (("Physical", "phys"), ("Functional", "func")) if service.get(flag) == "1"]
-                    rows.append({
-                        "Variant": text(variant),
-                        "Diag Class": diag_class,
-                        "Diag Instance": text(inst),
-                        "Service": text(service),
-                        "Qualifier": service.findtext("SHORTCUTQUAL") or service.findtext("QUAL") or "",
-                        "SID": to_hex(sid, 1) if sid is not None else "",
-                        "Protocol Service": text(proto),
-                        "Request": request,
-                        "Addressing": ", ".join(addressing),
-                        "Sessions": sessions,
-                        "Security": security,
-                        "Description": text(inst, "DESC"),
-                    })
-        return rows
+                    add(group, "Service",
+                        sid=to_hex(sid, 1) if sid is not None else "",
+                        request=request,
+                        diagClass=diag_class,
+                        instance=text(inst),
+                        name=text(service),
+                        qualifier=service.findtext("SHORTCUTQUAL") or service.findtext("QUAL") or "",
+                        protocolService=text(self.protocol_service(service)),
+                        addressing=", ".join(addressing),
+                        sessions=sessions,
+                        security=security)
+        return section
 
     def dids(self):
         # Which variants list each DID, and which services read or write it.
@@ -222,102 +215,82 @@ class CddFile:
                     if sid in (READ_DID_SID, WRITE_DID_SID):
                         access.setdefault((text(variant), int(sv.get("v")), sid), self.access(service))
 
-        rows = []
+        section = ET.Element("DIDs")
         for did in self.doc.find("DIDS").findall("DID"):
             number = int(did.get("n"))
-            elements = list(self.data_elements(did.find("STRUCTURE")))
-            min_bits = sum(e["_min"] for e in elements if e["_top"]) if all(e["_min"] is not None for e in elements) else None
-            max_bits = sum(e["_max"] for e in elements if e["_top"]) if min_bits is not None else None
+            variants = did_variants.get(did.get("id"), [])
+            node = add(section, "DID", id=to_hex(number, 2), name=text(did), qualifier=did.findtext("QUAL") or "",
+                       variants=", ".join(variants))
+            for label, sid in (("Read", READ_DID_SID), ("Write", WRITE_DID_SID)):
+                found = next((access[k] for k in ((v, number, sid) for v in variants) if k in access), None)
+                if found:
+                    add(node, label, sid=to_hex(sid, 1), sessions=found[0], security=found[1])
+            min_bits, max_bits = self.add_data_elements(node, did.find("STRUCTURE"))
             if min_bits is None:
                 length = "?"
             elif min_bits == max_bits:
                 length = f"{min_bits // 8}" if min_bits % 8 == 0 else f"{min_bits} bit"
             else:
                 length = f"{min_bits // 8}..{max_bits // 8}"
-            variants = did_variants.get(did.get("id"), [])
-            read = next((access[k] for k in ((v, number, READ_DID_SID) for v in variants) if k in access), None)
-            write = next((access[k] for k in ((v, number, WRITE_DID_SID) for v in variants) if k in access), None)
-            did_columns = {
-                "DID": to_hex(number, 2),
-                "Name": text(did),
-                "Qualifier": did.findtext("QUAL") or "",
-                "Variants": ", ".join(variants),
-                "Length (bytes)": length,
-            }
-            access_columns = {
-                "Read (22)": "Yes" if read else "No",
-                "Read Sessions": read[0] if read else "",
-                "Read Security": read[1] if read else "",
-                "Write (2E)": "Yes" if write else "No",
-                "Write Sessions": write[0] if write else "",
-                "Write Security": write[1] if write else "",
-            }
-            # One row per data element, with the DID columns repeated so the sheet can be filtered.
-            for element in elements or [{}]:
-                rows.append({**did_columns, **{k: v for k, v in element.items() if not k.startswith("_")}, **access_columns})
-        return rows
+            node.set("length", length)
+        return section
 
-    def data_elements(self, structure, prefix="", start_bit=0):
-        """Yield one dict per data element of a DID structure, descending into nested structures."""
-        position = start_bit
+    def add_data_elements(self, parent, structure, start_bit=0):
+        """Add a DataElement per element of a structure, descending into nested structures.
+
+        Returns the (min, max) bit length of the structure, or (None, None) if unknown."""
+        position, min_total, max_total = start_bit, 0, 0
         for obj in structure if structure is not None else []:
             if obj.tag not in ("DATAOBJ", "STRUCT", "GAPDATAOBJ"):
                 continue
-            name = f"{prefix}{text(obj)}"
             if obj.tag == "GAPDATAOBJ":
                 lo = hi = int(obj.get("bl", 0))
-                details = {"Data Type": "Gap (reserved)"}
+                dtype = None
             else:
                 lo, hi = self.bit_length(obj.get("dtref"))
-                details = self.type_details(self.ids.get(obj.get("dtref")))
-            yield {
-                "Data Element": name,
-                "Element Qualifier": obj.findtext("QUAL") or "",
-                "Start Byte": position // 8 if position is not None else "?",
-                "Start Bit": position % 8 if position is not None else "?",
-                "Bit Length": "?" if lo is None else (lo if lo == hi else f"{lo}..{hi}"),
-                **details,
-                "_min": lo, "_max": hi, "_top": not prefix,
-            }
+                dtype = self.ids.get(obj.get("dtref"))
+            element = add(parent, "DataElement",
+                          name=text(obj),
+                          qualifier=obj.findtext("QUAL") or "",
+                          startByte=position // 8 if position is not None else "?",
+                          startBit=position % 8 if position is not None else "?",
+                          bitLength="?" if lo is None else (lo if lo == hi else f"{lo}..{hi}"))
+            if obj.tag == "GAPDATAOBJ":
+                element.set("dataType", "Gap (reserved)")
+            else:
+                self.add_type_details(element, dtype)
             # Children of an inline STRUCT or of a structured data type, positioned inside the parent.
-            children = obj if obj.tag == "STRUCT" else self.ids.get(obj.get("dtref"))
+            children = obj if obj.tag == "STRUCT" else dtype
             if children is not None and children.tag in ("STRUCT", "STRUCTDT", "EOSITERDT", "STATICITERRDT"):
                 inner = children.find("STRUCT") if children.tag == "STRUCTDT" else children
-                yield from self.data_elements(inner, f"{name} / ", position)
+                self.add_data_elements(element, inner, position)
+            if lo is None or min_total is None:
+                min_total = max_total = None
+            else:
+                min_total, max_total = min_total + lo, max_total + hi
             position = position + lo if position is not None and lo is not None and lo == hi else None
+        return min_total, max_total
 
-    def type_details(self, dtype):
+    def add_type_details(self, element, dtype):
         """Describe a CANdela data type: kind, coded and physical value, conversion, unit and value table."""
         if dtype is None:
-            return {}
+            return
         cvt, pvt = dtype.find("CVALUETYPE"), dtype.find("PVALUETYPE")
-        details = {
-            "Data Type": f"{DATA_TYPE_KINDS.get(dtype.tag, dtype.tag)}: {text(dtype)}",
-            "Coded Type": self.value_type(cvt),
-            "Byte Order": BYTE_ORDERS.get(cvt.get("bo"), cvt.get("bo")) if cvt is not None else "",
-            "Physical Type": self.value_type(pvt),
-            "Display Format": DISPLAY_FORMATS.get(pvt.get("df"), pvt.get("df")) if pvt is not None else "",
-            "Conversion": "",
-            "Unit": (pvt.findtext("UNIT") or "") if pvt is not None else "",
-            "Value Table": "",
-            "Invalid Values": "",
-        }
-        conversions = []
+        set_attrs(element,
+                  dataType=f"{DATA_TYPE_KINDS.get(dtype.tag, dtype.tag)}: {text(dtype)}",
+                  codedType=self.value_type(cvt),
+                  byteOrder=BYTE_ORDERS.get(cvt.get("bo"), cvt.get("bo")) if cvt is not None else "",
+                  physicalType=self.value_type(pvt),
+                  displayFormat=DISPLAY_FORMATS.get(pvt.get("df"), pvt.get("df")) if pvt is not None else "",
+                  unit=(pvt.findtext("UNIT") or "") if pvt is not None else "")
         for comp in dtype.findall("COMP"):
-            parts = [f"factor {comp.get('f', '1')}"]
-            if comp.get("div"):
-                parts.append(f"divisor {comp.get('div')}")
-            parts.append(f"offset {comp.get('o', '0')}")
-            conversion = ", ".join(parts)
-            if comp.get("s") is not None or comp.get("e") is not None:
-                conversion = f"raw {comp.get('s', '')}..{comp.get('e', '')}: {conversion}"
-            conversions.append(conversion)
-        details["Conversion"] = "\n".join(conversions)
-        details["Value Table"] = "\n".join(
-            f"{value_range(m)} = {text(m, 'TEXT')}" for m in dtype.findall("TEXTMAP"))
-        details["Invalid Values"] = "\n".join(
-            f"{value_range(x)} ({x.get('inv', 'invalid')})" for x in dtype.findall("EXCL"))
-        return details
+            raw = f"{comp.get('s', '')}..{comp.get('e', '')}" if comp.get("s") or comp.get("e") else ""
+            add(element, "Conversion", raw=raw, factor=comp.get("f", "1"), divisor=comp.get("div", ""),
+                offset=comp.get("o", "0"))
+        for mapping in dtype.findall("TEXTMAP"):
+            add(element, "Value", raw=value_range(mapping)).text = text(mapping, "TEXT")
+        for excluded in dtype.findall("EXCL"):
+            add(element, "Invalid", raw=value_range(excluded)).text = excluded.get("inv", "invalid")
 
     @staticmethod
     def value_type(vt):
@@ -331,16 +304,13 @@ class CddFile:
         return desc
 
     def dtcs(self):
-        # Keep the record fields in the order of the DTC record templates.
-        fields = [text(item) for tmpl in self.doc.iter("RECORDTMPL") for item in tmpl if item.get("id")]
-        rows = []
+        section = ET.Element("DTCs")
         for record_dt in self.root.iter("RECORDDT"):
             records = record_dt.findall("RECORD")
             if not records:
                 continue
-            owner = self.parent.get(record_dt)
             variant, memory = "Record pool (no variant)", ""
-            node = owner
+            node = self.parent.get(record_dt)
             while node is not None:
                 if node.tag == "DIAGINST":
                     memory = text(node)
@@ -348,34 +318,29 @@ class CddFile:
                     variant = text(node)
                     break
                 node = self.parent.get(node)
+            group = add(section, "FaultMemory", variant=variant, name=memory)
             for record in records:
                 number = int(record.get("v"))
-                row = {
-                    "Variant": variant,
-                    "Fault Memory": memory,
-                    "DTC": to_hex(number, 3),
-                    "DTC Code": dtc_code(number),
-                    "Description": text(record, "TEXT"),
-                    **{field: "" for field in fields},
-                }
+                dtc = add(group, "DTC", id=to_hex(number, 3), code=dtc_code(number), description=text(record, "TEXT"))
                 for item in record:
                     tmpl = self.ref(item, "idref")
                     if tmpl is None:
                         continue
-                    column = text(tmpl)
                     if item.tag == "TRRECORDITEM":
-                        row[column] = text(item, "TEXT")
+                        value = text(item, "TEXT")
                     elif item.tag == "ENUMRECORDITEM":
                         labels = {e.get("v"): text(e, None) for e in tmpl.findall("ETAG")}
-                        row[column] = labels.get(item.get("v"), item.get("v"))
+                        value = labels.get(item.get("v"), item.get("v"))
                     else:
-                        row[column] = int(item.get("v")) if item.get("v", "").isdigit() else item.get("v")
-                rows.append(row)
-        return rows
+                        value = item.get("v")
+                    if value:
+                        add(dtc, "Field", name=text(tmpl)).text = value
+        return section
 
     def rids(self):
-        rows = []
+        section = ET.Element("RIDs")
         for variant in self.variants():
+            group = None
             for diag_class, inst in self.diag_instances(variant):
                 services = inst.findall("SERVICE")
                 sv = inst.find("STATICVALUE")
@@ -384,69 +349,64 @@ class CddFile:
                 requests = [(s, *self.request_bytes(inst, s)) for s in services]
                 if not any(sid == ROUTINE_CONTROL_SID for _, sid, _ in requests):
                     continue
+                if group is None:
+                    group = add(section, "Variant", name=text(variant))
                 sessions, security = self.access(services[0])
-                rows.append({
-                    "Variant": text(variant),
-                    "RID": to_hex(int(sv.get("v")), 2),
-                    "Name": text(inst),
-                    "Qualifier": inst.findtext("QUAL") or "",
-                    "Diag Class": diag_class,
-                    "Sub-functions": ", ".join(text(s) for s in services),
-                    "Requests": "\n".join(f"{text(s)}: {req}" for s, _, req in requests),
-                    "Sessions": sessions,
-                    "Security": security,
-                    "Parameters": self.parameters(inst),
-                    "Description": text(inst, "DESC"),
-                })
-        return rows
+                rid = add(group, "RID", id=to_hex(int(sv.get("v")), 2), name=text(inst),
+                          qualifier=inst.findtext("QUAL") or "", diagClass=diag_class,
+                          sessions=sessions, security=security)
+                if text(inst, "DESC"):
+                    add(rid, "Description").text = text(inst, "DESC")
+                for service, _, request in requests:
+                    add(rid, "Request", subFunction=text(service)).text = request
+                for group_name, names in self.parameters(inst):
+                    params = add(rid, "Parameters", group=group_name)
+                    for name in names:
+                        add(params, "Parameter", name=name)
+        return section
 
 
-def write_sheet(workbook, title, rows):
-    sheet = workbook.create_sheet(title)
-    columns = []
-    for row in rows:
-        columns.extend(c for c in row if c not in columns)
-    sheet.append(columns)
-    for row in rows:
-        sheet.append([row.get(c, "") for c in columns])
-
-    header_fill = PatternFill("solid", fgColor="1F4E78")
-    for cell in sheet[1]:
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = header_fill
-        cell.alignment = Alignment(vertical="center", wrap_text=True)
-    for row in sheet.iter_rows(min_row=2):
-        for cell in row:
-            cell.alignment = Alignment(vertical="top", wrap_text=True)
-    for index, column in enumerate(columns, start=1):
-        longest = max([len(column)] + [max((len(line) for line in str(r.get(column, "")).split("\n")), default=0) for r in rows])
-        sheet.column_dimensions[get_column_letter(index)].width = min(max(10, longest + 2), 60)
-    sheet.freeze_panes = "A2"
-    if rows:
-        sheet.auto_filter.ref = sheet.dimensions
+def set_attrs(elem, **attrs):
+    """Set attributes, leaving out empty ones so the XML stays short."""
+    for key, value in attrs.items():
+        if value not in (None, ""):
+            elem.set(key, str(value))
 
 
-def export(cdd_path, xlsx_path):
+def add(parent, tag, **attrs):
+    child = ET.SubElement(parent, tag)
+    set_attrs(child, **attrs)
+    return child
+
+
+def export(cdd_path, xml_path):
     cdd = CddFile(cdd_path)
-    sheets = {"Service": cdd.services(), "DID": cdd.dids(), "DTC": cdd.dtcs(), "RID": cdd.rids()}
-    workbook = Workbook()
-    workbook.remove(workbook.active)
-    for title, rows in sheets.items():
-        write_sheet(workbook, title, rows)
-    workbook.save(xlsx_path)
-    return {title: len(rows) for title, rows in sheets.items()}
+    root = ET.Element("CddExport", source=cdd.path.name, ecu=text(cdd.doc.find("ECU")))
+    sections = {"Services": cdd.services(), "DIDs": cdd.dids(), "DTCs": cdd.dtcs(), "RIDs": cdd.rids()}
+    counts = {
+        "Services": len(sections["Services"].findall("Variant/Service")),
+        "DIDs": len(sections["DIDs"].findall("DID")),
+        "DTCs": len(sections["DTCs"].findall("FaultMemory/DTC")),
+        "RIDs": len(sections["RIDs"].findall("Variant/RID")),
+    }
+    for name, section in sections.items():
+        section.set("count", str(counts[name]))
+        root.append(section)
+    ET.indent(root, space="  ")
+    ET.ElementTree(root).write(xml_path, encoding="utf-8", xml_declaration=True)
+    return counts
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Export DIDs, DTCs, RIDs and services of a CDD file to Excel.")
+    parser = argparse.ArgumentParser(description="Export DIDs, DTCs, RIDs and services of a CDD file to XML.")
     parser.add_argument("cdd", help="path to the .cdd file")
-    parser.add_argument("-o", "--output", help="output .xlsx path (default: <cdd name>.xlsx next to the CDD)")
+    parser.add_argument("-o", "--output", help="output .xml path (default: <cdd name>.xml next to the CDD)")
     args = parser.parse_args(argv)
-    output = args.output or str(Path(args.cdd).with_suffix(".xlsx"))
+    output = args.output or str(Path(args.cdd).with_suffix(".xml"))
     counts = export(args.cdd, output)
     print(f"Wrote {output}")
-    for title, count in counts.items():
-        print(f"  {title}: {count} rows")
+    for name, count in counts.items():
+        print(f"  {name}: {count}")
     return 0
 
 

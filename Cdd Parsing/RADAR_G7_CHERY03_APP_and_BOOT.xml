@@ -1,0 +1,2055 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CddExport source="RADAR_G7_CHERY03_APP_and_BOOT.cdd" ecu="RADAR_G7_CHERY03">
+  <Services count="139">
+    <Variant name="Base Variant">
+      <Service sid="10" request="10 01" diagClass="Sessions" instance="Default Session" name="Start" qualifier="DefaultSession_Start" protocolService="($10) DiagnosticSessionControl" addressing="Physical, Functional" sessions="DefaultSession, ProgrammingSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="10" request="10 02" diagClass="Sessions" instance="Programming Session" name="Start" qualifier="ProgrammingSession_Start" protocolService="($10) DiagnosticSessionControl" addressing="Physical, Functional" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="10" request="10 03" diagClass="Sessions" instance="Extended Session" name="Start" qualifier="ExtendedDiagnosticSession_Start" protocolService="($10) DiagnosticSessionControl" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="3E" request="3E 00" diagClass="Tester Present" instance="Tester Present" name="Send" qualifier="TesterPresent_Send" protocolService="($3E) TesterPresent" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="11" request="11 01" diagClass="Reset" instance="Hard Reset" name="Reset" qualifier="Hard_Reset_Reset" protocolService="($11) EcuReset" addressing="Physical, Functional" sessions="DefaultSession, ProgrammingSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="29" request="29 01 00" diagClass="Authentication" instance="Authentication" name="Verify Certificate Unidirectional" qualifier="Authentication_Verify_Certificate_Unidirectional" protocolService="($29) Authentication - VerifyCertificateUnidirectional" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 02 00" diagClass="Authentication" instance="Authentication" name="Verify Certificate Bidirectional" qualifier="Authentication_Verify_Certificate_Bidirectional" protocolService="($29) Authentication - VerifyCertificateBidirectional" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 03" diagClass="Authentication" instance="Authentication" name="Proof Of Ownership" qualifier="Authentication_Proof_Of_Ownership" protocolService="($29) Authentication - ProofOfOwnership" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 04" diagClass="Authentication" instance="Authentication" name="Transmit Certificate" qualifier="Authentication_Transmit_Certificate" protocolService="($29) Authentication - Transmit Certificate" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 00" diagClass="Authentication" instance="Authentication" name="Deauthentication" qualifier="Authentication_Deauthentication" protocolService="($29) Authentication - DeAuthentication" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 08" diagClass="Authentication" instance="Authentication" name="Authentication Configuration" qualifier="Authentication_Authentication_Configuration" protocolService="($29) Authentication - AuthenticationConfiguration" addressing="Physical" sessions="All" security="All" />
+      <Service sid="28" request="28 00" diagClass="Communication Control" instance="EnableRxAndEnableTx" name="Control" qualifier="EnableRxAndEnableTx_Control" protocolService="($28) CommunicationControl" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="28" request="28 01" diagClass="Communication Control" instance="EnableRxAndDisableTx" name="Control" qualifier="EnableRxAndDisableTx_Control" protocolService="($28) CommunicationControl" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="85" request="85 01" diagClass="Control DTC Setting" instance="Control DTC Setting" name="On" qualifier="ControlDTCSetting_On" protocolService="($85) ControlDTCSetting (on)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="85" request="85 02" diagClass="Control DTC Setting" instance="Control DTC Setting" name="Off" qualifier="ControlDTCSetting_Off" protocolService="($85) ControlDTCSetting (off)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="31" request="31 01 0531" diagClass="Routine Control" instance="Sensor ID Lock or Unlock Control" name="Start" qualifier="Sensor_ID_Lock_or_Unlock_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0531" diagClass="Routine Control" instance="Sensor ID Lock or Unlock Control" name="Stop" qualifier="Sensor_ID_Lock_or_Unlock_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0531" diagClass="Routine Control" instance="Sensor ID Lock or Unlock Control" name="Request Results" qualifier="Sensor_ID_Lock_or_Unlock_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0650" diagClass="Routine Control" instance="Bumper Repair Validation Control" name="Start" qualifier="Bumper_Repair_Validation_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0650" diagClass="Routine Control" instance="Bumper Repair Validation Control" name="Stop" qualifier="Bumper_Repair_Validation_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0650" diagClass="Routine Control" instance="Bumper Repair Validation Control" name="Request Results" qualifier="Bumper_Repair_Validation_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0604" diagClass="Routine Control" instance="Sensor Alignment CDC Control" name="Start" qualifier="Sensor_Alignment_CDC_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0604" diagClass="Routine Control" instance="Sensor Alignment CDC Control" name="Stop" qualifier="Sensor_Alignment_CDC_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0604" diagClass="Routine Control" instance="Sensor Alignment CDC Control" name="Request Results" qualifier="Sensor_Alignment_CDC_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0603" diagClass="Routine Control" instance="Sensor Alignment AIC Control" name="Start" qualifier="Sensor_Alignment_AIC_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0603" diagClass="Routine Control" instance="Sensor Alignment AIC Control" name="Stop" qualifier="Sensor_Alignment_AIC_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0603" diagClass="Routine Control" instance="Sensor Alignment AIC Control" name="Request Results" qualifier="Sensor_Alignment_AIC_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0602" diagClass="Routine Control" instance="Sensor Alignment EOLC Control" name="Start" qualifier="Sensor_Alignment_EOLC_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0602" diagClass="Routine Control" instance="Sensor Alignment EOLC Control" name="Stop" qualifier="Sensor_Alignment_EOLC_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0602" diagClass="Routine Control" instance="Sensor Alignment EOLC Control" name="Request Results" qualifier="Sensor_Alignment_EOLC_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0601" diagClass="Routine Control" instance="Sensor Alignment SDC Control" name="Start" qualifier="Sensor_Alignment_SDC_Control_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 02 0601" diagClass="Routine Control" instance="Sensor Alignment SDC Control" name="Stop" qualifier="Sensor_Alignment_SDC_Control_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 03 0601" diagClass="Routine Control" instance="Sensor Alignment SDC Control" name="Request Results" qualifier="Sensor_Alignment_SDC_Control_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+    </Variant>
+    <Variant name="APP">
+      <Service sid="3E" request="3E 00" diagClass="Tester Present" instance="Tester Present" name="Send" qualifier="TesterPresent_Send" protocolService="($3E) TesterPresent" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="27" request="27 01" diagClass="Security Access" instance="request Seed" name="Request" qualifier="request_Seed_Request" protocolService="($27) SecurityAccess - Request seed" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="27" request="27 02" diagClass="Security Access" instance="sendKey" name="Send" qualifier="sendKey_Send" protocolService="($27) SecurityAccess - Send key" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="28" request="28 03" diagClass="Communication Control" instance="DisableRxAndTx" name="Control" qualifier="DisableRxAndTx_Control" protocolService="($28) CommunicationControl" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="85" request="85 01" diagClass="Control DTC Setting" instance="Control DTC Setting" name="On" qualifier="ControlDTCSetting_On" protocolService="($85) ControlDTCSetting (on)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="85" request="85 02" diagClass="Control DTC Setting" instance="Control DTC Setting" name="Off" qualifier="ControlDTCSetting_Off" protocolService="($85) ControlDTCSetting (off)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F18C" diagClass="Identification" instance="ECU Serial Number" name="Read" qualifier="ECU_Serial_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F089" diagClass="Identification" instance="Vehicle Manufacturer ECU Hardware Version Number Data Identifier" name="Read" qualifier="Vehicle_Manufacturer_ECU_Hardware_Version_Number_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F160" diagClass="Identification" instance="Signature Public Key Status" name="Read" qualifier="Signature_Public_Key_Status_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F195" diagClass="Identification" instance="System Supplier ECU Software Version Number" name="Read" qualifier="System_Supplier_ECU_Software_Version_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F197" diagClass="Identification" instance="System Name" name="Read" qualifier="System_Name_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F193" diagClass="Identification" instance="System Supplier ECU Hardware Version Number Data Identifier" name="Read" qualifier="System_Supplier_ECU_Hardware_Version_Number_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F18A" diagClass="Identification" instance="System Supplier Identifier Data Identifier" name="Read" qualifier="System_Supplier_Identifier_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F187" diagClass="Identification" instance="Vehicle Manufacturer Spare Part Number Data Identifier" name="Read" qualifier="Vehicle_Manufacturer_Spare_Part_Number_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F184" diagClass="Identification" instance="Application Software Fingerprint Data Identifier" name="Read" qualifier="Application_Software_Fingerprint_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="2E" request="2E F184" diagClass="Identification" instance="Application Software Fingerprint Data Identifier" name="Write" qualifier="Application_Software_Fingerprint_Data_Identifier_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="ProgrammingSession" security="Unlocked_0x11" />
+      <Service sid="22" request="22 F190" diagClass="Identification" instance="VIN Data Identifier" name="Read" qualifier="VIN_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="2E" request="2E F190" diagClass="Identification" instance="VIN Data Identifier" name="Write" qualifier="VIN_Data_Identifier_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="22" request="22 F189" diagClass="Identification" instance="Vehicle Manufacturer ECU Software Version Number Data Identifier" name="Read" qualifier="Vehicle_Manufacturer_ECU_Software_Version_Number_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F180" diagClass="Identification" instance="Boot Software Identification" name="Read" qualifier="Boot_Software_Identification_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F013" diagClass="Identification" instance="Vehicle Manufacturer Logistic Software Part Number" name="Read" qualifier="Vehicle_Manufacturer_Logistic_Software_Part_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F0F1" diagClass="Identification" instance="Update Tried Counter" name="Read" qualifier="Update_Tried_Counter_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F0F3" diagClass="Identification" instance="Dependecy Check Success Counter" name="Read" qualifier="Dependecy_Check_Success_Counter_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F186" diagClass="Identification" instance="Active Diagnostic Session" name="Read" qualifier="Active_Diagnostic_Session_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="22" request="22 F031" diagClass="Identification" instance="Vehicle Manufacturer Calibration Data Part Number" name="Read" qualifier="Vehicle_Manufacturer_Calibration_Data_Part_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 0460" diagClass="Identification" instance="PCANDevelopmentDataControl" name="Read" qualifier="PCANDevelopmentDataControl_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="2E" request="2E 0460" diagClass="Identification" instance="PCANDevelopmentDataControl" name="Write" qualifier="PCANDevelopmentDataControl_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="22" request="22 F0F0" diagClass="Identification" instance="RunningAreaInfo" name="Read" qualifier="RunningAreaInfo_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F090" diagClass="Identification" instance="Vehicle Manufacturer ECU Backup Software Version Number Data Identifier" name="Read" qualifier="Vehicle_Manufacturer_ECU_Backup_Software_Version_Number_Data_Identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F18B" diagClass="Identification" instance="ECU manufacturing date" name="Read" qualifier="ECU_manufacturing_date_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F091" diagClass="Identification" instance="Mapping between DTC and DTC Number" name="Read" qualifier="Mapping_between_DTC_and_DTC_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F162" diagClass="Identification" instance="Hash value of the current application software version" name="Read" qualifier="Hash_value_of_the_current_application_software_version_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F163" diagClass="Identification" instance="Hash value of the current calibration software version" name="Read" qualifier="Hash_value_of_the_current_calibration_software_version_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F107" diagClass="Identification" instance="Vehicle Manufacture ECU Application Diagnostic Database Part And Version Number" name="Read" qualifier="Vehicle_Manufacture_ECU_Application_Diagnostic_Database_Part_And_Version_Number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 4908" diagClass="Measurements" instance="Get snapshot" name="Read" qualifier="Get_snapshot_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 4902" diagClass="Measurements" instance="Get Calibration Angle" name="Read" qualifier="Get_Calibration_Angle_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 4907" diagClass="Measurements" instance="Get Angle Calibration state" name="Read" qualifier="Get_Angle_Calibration_state_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 4900" diagClass="Measurements" instance="CR parameter configuration" name="Read" qualifier="CR_parameter_configuration_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="22" request="22 4903" diagClass="Measurements" instance="Request System State" name="Read" qualifier="Request_System_State_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 E680" diagClass="Measurements" instance="Current Time" name="Read" qualifier="Current_Time_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 E681" diagClass="Measurements" instance="Vehicle Speed" name="Read" qualifier="Vehicle_Speed_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 E682" diagClass="Measurements" instance="Total Odometer" name="Read" qualifier="Total_Odometer_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 E683" diagClass="Measurements" instance="Current Voltage" name="Read" qualifier="Current_Voltage_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 4901" diagClass="IO Control" instance="BSD modulel IO Status" name="Read" qualifier="BSD_modulel_IO_Status_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="2F" request="2F 4901 00" diagClass="IO Control" instance="BSD modulel IO Status" name="ReturnControl" qualifier="BSD_modulel_IO_Status_ReturnControl" protocolService="($2F) InputOutputControlByIdentifier - Return control to ECU" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="2F" request="2F 4901 03" diagClass="IO Control" instance="BSD modulel IO Status" name="Control" qualifier="BSD_modulel_IO_Status_Control" protocolService="($2F) InputOutputControlByIdentifier - Short term adjustment" addressing="Physical" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="22" request="22 4905" diagClass="IO Control" instance="Request  Angle Calibration" name="Read" qualifier="Request_Angle_Calibration_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="2F" request="2F 4905 00" diagClass="IO Control" instance="Request  Angle Calibration" name="ReturnControl" qualifier="Request_Angle_Calibration_ReturnControl" protocolService="($2F) InputOutputControlByIdentifier - Return control to ECU" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="2F" request="2F 4905 03" diagClass="IO Control" instance="Request  Angle Calibration" name="Control" qualifier="Request_Angle_Calibration_Control" protocolService="($2F) InputOutputControlByIdentifier - Short term adjustment" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="31" request="31 01 0203" diagClass="Routine Control" instance="Programming Precondition Check" name="Start" qualifier="Programming_Precondition_Check_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Locked" />
+      <Service sid="31" request="31 01 0531" diagClass="Routine Control" instance="Lock and Unlock Sensor Identification" name="Start" qualifier="Lock_and_Unlock_Sensor_Identification_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="31" request="31 02 0531" diagClass="Routine Control" instance="Lock and Unlock Sensor Identification" name="Stop" qualifier="Lock_and_Unlock_Sensor_Identification_Stop" protocolService="($31) RoutineControl - Stop routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="31" request="31 03 0531" diagClass="Routine Control" instance="Lock and Unlock Sensor Identification" name="Request Results" qualifier="Lock_and_Unlock_Sensor_Identification_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <Service sid="31" request="31 01 DD04" diagClass="Routine Control" instance="Version switchover" name="Start" qualifier="Version_switchover_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="31" request="31 03 DD04" diagClass="Routine Control" instance="Version switchover" name="Request Results" qualifier="Version_switchover_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 02" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - DTCs by status mask" qualifier="PrimaryFaultMemory_ReadAllIdentified" protocolService="($19) ReadDtcInformation - Report DTC by status mask" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="19" request="19 06" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - extended data record" qualifier="PrimaryFaultMemory_Read_extended_data_record" protocolService="($19) ReadDtcInformation - Report DTC Extended Data Record by DTC Number" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="19" request="19 04" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - snapshot record" qualifier="PrimaryFaultMemory_Read_snapshot_record" protocolService="($19) ReadDtcInformation - Report DTC Snapshot Record by DTC Number" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="19" request="19 0A" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - supported DTCs" qualifier="PrimaryFaultMemory_ReadAllSupported" protocolService="($19) ReadDtcInformation - Report supported DTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="14" request="14" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Clear DTC" qualifier="PrimaryFaultMemory_Clear" protocolService="($14) ClearDiagnosticInformation" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+    </Variant>
+    <Variant name="Boot">
+      <Service sid="3E" request="3E 00" diagClass="Tester Present" instance="Tester Present" name="Send" qualifier="TesterPresent_Send" protocolService="($3E) TesterPresent" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="27" request="27 11" diagClass="Security Access" instance="requestSeed" name="Request" qualifier="requestSeed_Request" protocolService="($27) SecurityAccess - Request seed" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="27" request="27 12" diagClass="Security Access" instance="sendKey" name="Send" qualifier="sendKey_Send" protocolService="($27) SecurityAccess - Send key" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="29" request="29 01 00" diagClass="Authentication" instance="Authentication" name="Verify Certificate Unidirectional" qualifier="Authentication_Verify_Certificate_Unidirectional" protocolService="($29) Authentication - VerifyCertificateUnidirectional" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 02 00" diagClass="Authentication" instance="Authentication" name="Verify Certificate Bidirectional" qualifier="Authentication_Verify_Certificate_Bidirectional" protocolService="($29) Authentication - VerifyCertificateBidirectional" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 03" diagClass="Authentication" instance="Authentication" name="Proof Of Ownership" qualifier="Authentication_Proof_Of_Ownership" protocolService="($29) Authentication - ProofOfOwnership" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 04" diagClass="Authentication" instance="Authentication" name="Transmit Certificate" qualifier="Authentication_Transmit_Certificate" protocolService="($29) Authentication - Transmit Certificate" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 00" diagClass="Authentication" instance="Authentication" name="Deauthentication" qualifier="Authentication_Deauthentication" protocolService="($29) Authentication - DeAuthentication" addressing="Physical" sessions="All" security="All" />
+      <Service sid="29" request="29 08" diagClass="Authentication" instance="Authentication" name="Authentication Configuration" qualifier="Authentication_Authentication_Configuration" protocolService="($29) Authentication - AuthenticationConfiguration" addressing="Physical" sessions="All" security="All" />
+      <Service sid="28" request="28 03" diagClass="Communication Control" instance="DisableRxAndTx" name="Control" qualifier="DisableRxAndTx_Control" protocolService="($28) CommunicationControl" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="-" />
+      <Service sid="85" request="85 01" diagClass="Control DTC Setting" instance="Control DTC Setting" name="On" qualifier="ControlDTCSetting_On" protocolService="($85) ControlDTCSetting (on)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="85" request="85 02" diagClass="Control DTC Setting" instance="Control DTC Setting" name="Off" qualifier="ControlDTCSetting_Off" protocolService="($85) ControlDTCSetting (off)" addressing="Physical, Functional" sessions="ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Service sid="22" request="22 F020" diagClass="Measurements" instance="Read Public Key status" name="Read" qualifier="Read_Public_Key_status_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F15B" diagClass="Measurements" instance="Read Fingerprint" name="Read" qualifier="Read_Fingerprint_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F180" diagClass="Measurements" instance="Boot Software Identification" name="Read" qualifier="Boot_Software_Identification_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F187" diagClass="Measurements" instance="Vehicle manufacturer spare part number" name="Read" qualifier="Vehicle_manufacturer_spare_part_number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F18A" diagClass="Measurements" instance="System supplier identifier" name="Read" qualifier="System_supplier_identifier_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="22" request="22 F191" diagClass="Measurements" instance="Vehicle manufacturer ECU hardware number" name="Read" qualifier="Vehicle_manufacturer_ECU_hardware_number_Read" protocolService="($22) ReadDataByIdentifier" addressing="Physical, Functional" sessions="All" security="All" />
+      <Service sid="2E" request="2E F021" diagClass="Stored Data" instance="Write Public Key" name="Write" qualifier="Write_Public_Key_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="2E" request="2E F022" diagClass="Stored Data" instance="Reset Public Key to Delivery Mode" name="Write" qualifier="Reset_Public_Key_to_Delivery_Mode_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="2E" request="2E F15A" diagClass="Stored Data" instance="Write Fingerprint" name="Write" qualifier="Write_Fingerprint_Write" protocolService="($2E) WriteDataByIdentifier" addressing="Physical" sessions="All" security="All" />
+      <Service sid="31" request="31 01 DD0F" diagClass="Routine Control" instance="Switchover prevention" name="Start" qualifier="Switchover_prevention_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession" security="Locked, Unlocked_0x11" />
+      <Service sid="31" request="31 01 DD03" diagClass="Routine Control" instance="Version installation" name="Start" qualifier="Version_installation_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 DD01" diagClass="Routine Control" instance="Stay In Boot" name="Start" qualifier="Stay_In_Boot_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 FF01" diagClass="Routine Control" instance="Programming Dependencies Check" name="Start" qualifier="Programming_Dependencies_Check_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession" security="Unlocked_0x11" />
+      <Service sid="31" request="31 01 FF00" diagClass="Routine Control" instance="EraseMemory" name="Start" qualifier="EraseMemory_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 D005" diagClass="Routine Control" instance="Flash File Installation" name="Start" qualifier="Flash_File_Installation_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 DD02" diagClass="Routine Control" instance="Security signature" name="Start" qualifier="Security_signature_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="31" request="31 01 0203" diagClass="Routine Control" instance="Programming Precondition Check" name="Start" qualifier="Programming_Precondition_Check_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ExtendedDiagnosticSession" security="Locked" />
+      <Service sid="31" request="31 01 DD04" diagClass="Routine Control" instance="Version switchover" name="Start" qualifier="Version_switchover_Start" protocolService="($31) RoutineControl - Start routine" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="31" request="31 03 DD04" diagClass="Routine Control" instance="Version switchover" name="Request Results" qualifier="Version_switchover_RequestResults" protocolService="($31) RoutineControl - Request routine results" addressing="Physical" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Unlocked_0x11, Unlocked_0x1" />
+      <Service sid="19" request="19 01" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - number of DTCs" qualifier="PrimaryFaultMemory_ReadNumber" protocolService="($19) ReadDtcInformation - Report number of DTC by status mask" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 02" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - DTCs by status mask" qualifier="PrimaryFaultMemory_ReadAllIdentified" protocolService="($19) ReadDtcInformation - Report DTC by status mask" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 06" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - extended data record" qualifier="PrimaryFaultMemory_Read_extended_data_record" protocolService="($19) ReadDtcInformation - Report DTC Extended Data Record by DTC Number" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 04" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - snapshot record" qualifier="PrimaryFaultMemory_Read_snapshot_record" protocolService="($19) ReadDtcInformation - Report DTC Snapshot Record by DTC Number" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 03" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - snapshot ID" qualifier="PrimaryFaultMemory_Read_snapshot_ID" protocolService="($19) ReadDtcInformation - ReportDtcSnapshotIdentification" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 07" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - number of DTCs by severity" qualifier="PrimaryFaultMemory_Read_number_of_DTCs_by_severity" protocolService="($19) ReadDtcInformation - Report number of DTC by severity mask" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 08" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - DTCs by severity" qualifier="PrimaryFaultMemory_Read_DTCs_by_severity" protocolService="($19) ReadDtcInformation - Report DTC by severity mask record" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 09" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - severity information" qualifier="PrimaryFaultMemory_Read_severity_information" protocolService="($19) ReadDtcInformation - Report severity information of DTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 0A" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - supported DTCs" qualifier="PrimaryFaultMemory_ReadAllSupported" protocolService="($19) ReadDtcInformation - Report supported DTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 0B" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - first test failed DTC" qualifier="PrimaryFaultMemory_Read_first_test_failed_DTC" protocolService="($19) ReadDtcInformation - ReportFirstTestFailedDTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 0C" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - first confirmed DTC" qualifier="PrimaryFaultMemory_Read_first_confirmed_DTC" protocolService="($19) ReadDtcInformation - ReportFirstConfirmedDTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 0D" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - most recent test failed DTC" qualifier="PrimaryFaultMemory_Read_most_recent_test_failed_DTC" protocolService="($19) ReadDtcInformation - ReportMostRecentTestFailedDTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 0E" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - most recent confirmed DTC" qualifier="PrimaryFaultMemory_Read_most_recent_confirmed_DTC" protocolService="($19) ReadDtcInformation - ReportMostRecentConfirmedDTC" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="19" request="19 14" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Read - fault detection counter" qualifier="PrimaryFaultMemory_Read_fault_detection_counter" protocolService="($19) ReadDtcInformation - ReportDTCFaultDetectionCounter" addressing="Physical" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Service sid="14" request="14" diagClass="Primary Fault Memory" instance="Primary Fault Memory" name="Clear DTC" qualifier="PrimaryFaultMemory_Clear" protocolService="($14) ClearDiagnosticInformation" addressing="Physical, Functional" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+    </Variant>
+  </Services>
+  <DIDs count="43">
+    <DID id="0460" name="PCANDevelopmentDataControl" qualifier="PCANDevelopmentDataControl" variants="APP" length="1">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <Write sid="2E" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <DataElement name="PCANDevelopmentDataControl" qualifier="PCANDevelopmentDataControl" startByte="0" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+    </DID>
+    <DID id="4900" name="CR parameter configuration" qualifier="CR_parameter_configuration" variants="APP" length="4">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <DataElement name="CR parameter configuration" qualifier="CR_parameter_configuration" startByte="0" startBit="0" bitLength="32" dataType="Identical: HexDump (4 Byte)" codedType="Unsigned 32 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Hex" />
+    </DID>
+    <DID id="4901" name="BSD modulel IO Status" qualifier="BSD_modulel_IO_Status" variants="APP" length="1">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="-" />
+      <DataElement name="Control State" qualifier="Control_State" startByte="0" startBit="0" bitLength="8" dataType="Text table: LED Status" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">OFF</Value>
+        <Value raw="1">ON</Value>
+      </DataElement>
+    </DID>
+    <DID id="4902" name="Get Calibration  Angle" qualifier="Get_Calibration_Angle" variants="APP" length="2">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Calibration  Angle" qualifier="Calibration_Angle" startByte="0" startBit="0" bitLength="16" dataType="Linear: Calibration Angle" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="degree">
+        <Conversion raw="0..17920" factor="1" divisor="128" offset="-70" />
+      </DataElement>
+    </DID>
+    <DID id="4903" name="Request System State" qualifier="Request_System_State" variants="APP" length="32">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="System State" qualifier="System_State" startByte="0" startBit="0" bitLength="8" dataType="Text table: System State" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Off</Value>
+        <Value raw="1">On</Value>
+        <Value raw="2">Temporary Error</Value>
+        <Value raw="3">System Error</Value>
+      </DataElement>
+      <DataElement name="Unused Bytes" qualifier="Unused_Bytes" startByte="1" startBit="0" bitLength="248" dataType="Identical: HexDump (31 Bytes)" codedType="Unsigned 8 bit x 31" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 31" displayFormat="Hex" />
+    </DID>
+    <DID id="4905" name="Request  Angle Calibration" qualifier="Request_Angle_Calibration" variants="APP" length="1">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Request  Angle Calibration" qualifier="Request_Angle_Calibration" startByte="0" startBit="0" bitLength="8" dataType="Text table: RequestAngleCalibration" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Invalid</Value>
+        <Value raw="1">Request angle calibration</Value>
+      </DataElement>
+    </DID>
+    <DID id="4907" name="Get Angle Calibration state" qualifier="Get_Angle_Calibration_state" variants="APP" length="1">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Angle Calibration state" qualifier="Angle_Calibration_state" startByte="0" startBit="0" bitLength="8" dataType="Text table: Angle Calibration State" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Angle Alignment Not Active</Value>
+        <Value raw="1">Angle Alignment Process0~10%</Value>
+        <Value raw="2">Angle Alignment Process10%~20%</Value>
+        <Value raw="3">Angle Alignment Process20%~30%</Value>
+        <Value raw="4">Angle Alignment Process30%~40%</Value>
+        <Value raw="5">Angle Alignment Process40%~50%</Value>
+        <Value raw="6">Angle Alignment Process50%~60%</Value>
+        <Value raw="7">Angle Alignment Process60%~70%</Value>
+        <Value raw="8">Angle Alignment Process70%~80%</Value>
+        <Value raw="9">Angle Alignment Process80%~90%</Value>
+        <Value raw="10">Angle Alignment Process90%~100%</Value>
+        <Value raw="11">Angle Alignment Success(Deviation in the range of spec)</Value>
+        <Value raw="12">Angle Alignment Failure(Deviation out the range of spec)</Value>
+        <Value raw="13">Alignment Fail（timeout,No enough Target）</Value>
+        <Value raw="14">Reserved</Value>
+        <Value raw="15">Reserved</Value>
+      </DataElement>
+    </DID>
+    <DID id="4908" name="Get snapshot" qualifier="Get_snapshot" variants="APP" length="32">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Vehicle Speed" qualifier="Vehicle_Speed" startByte="0" startBit="0" bitLength="16" dataType="Linear: Vehicle Speed" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="km/h">
+        <Conversion raw="0..8190" factor="0.0625" offset="0" />
+      </DataElement>
+      <DataElement name="ECU Voltage" qualifier="ECU_Voltage" startByte="2" startBit="0" bitLength="16" dataType="Linear: ECU Voltage" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float32 32 bit" displayFormat="Float" unit="V">
+        <Conversion raw="0..180" factor="0.1" offset="0" />
+      </DataElement>
+      <DataElement name="ArmingSts" qualifier="ArmingSts" startByte="4" startBit="0" bitLength="8" dataType="Text table: ArmingSts" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Not active</Value>
+        <Value raw="1">Arming successful</Value>
+        <Value raw="2">Disarming successful</Value>
+      </DataElement>
+      <DataElement name="PowerMode" qualifier="PowerMode" startByte="5" startBit="0" bitLength="8" dataType="Text table: PowerMode" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Off</Value>
+        <Value raw="1">ACC</Value>
+        <Value raw="2">ON</Value>
+        <Value raw="3">Crank</Value>
+        <Value raw="4">Running</Value>
+      </DataElement>
+      <DataElement name="ExternalTemperature_C" qualifier="ExternalTemperature_C" startByte="6" startBit="0" bitLength="8" dataType="Linear: ExternalTemperature" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="°C">
+        <Conversion raw="0..250" factor="0.5" offset="-40" />
+      </DataElement>
+      <DataElement name="Radar Temperature" qualifier="Radar_Temperature" startByte="7" startBit="0" bitLength="16" dataType="Linear: Radar Temperature" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="°C">
+        <Conversion raw="0..500" factor="0.5" offset="-50" />
+      </DataElement>
+      <DataElement name="Internal error status" qualifier="Internal_error_status" startByte="9" startBit="0" bitLength="8" dataType="Linear: Internal error status" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0..255" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeYear" qualifier="TimeYear" startByte="10" startBit="0" bitLength="8" dataType="Linear: TimeYear" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0..255" factor="1" offset="2000" />
+      </DataElement>
+      <DataElement name="TimeMonth" qualifier="TimeMonth" startByte="11" startBit="0" bitLength="8" dataType="Linear: TimeMonth" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..12" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeDay" qualifier="TimeDay" startByte="12" startBit="0" bitLength="8" dataType="Linear: TimeDay" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..31" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeHour" qualifier="TimeHour" startByte="13" startBit="0" bitLength="8" dataType="Linear: TimeHour" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="Hour">
+        <Conversion raw="0..23" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeMinute" qualifier="TimeMinute" startByte="14" startBit="0" bitLength="8" dataType="Linear: TimeMinute" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="Min">
+        <Conversion raw="0..59" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeSecond" qualifier="TimeSecond" startByte="15" startBit="0" bitLength="8" dataType="Linear: TimeSecond" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="second">
+        <Conversion raw="0..59" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="Reserved" qualifier="Reserved" startByte="16" startBit="0" bitLength="128" dataType="Identical: HexDump (16 Bytes)" codedType="Unsigned 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 16" displayFormat="Hex" />
+    </DID>
+    <DID id="E680" name="DID 0xE680" qualifier="DID_0xE680" variants="APP" length="6">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="TimeYear" qualifier="TimeYear" startByte="0" startBit="0" bitLength="8" dataType="Linear: TimeYear" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0..255" factor="1" offset="2000" />
+      </DataElement>
+      <DataElement name="TimeMonth" qualifier="TimeMonth" startByte="1" startBit="0" bitLength="8" dataType="Linear: TimeMonth" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..12" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeDay" qualifier="TimeDay" startByte="2" startBit="0" bitLength="8" dataType="Linear: TimeDay" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..31" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeHour" qualifier="TimeHour" startByte="3" startBit="0" bitLength="8" dataType="Linear: TimeHour" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="Hour">
+        <Conversion raw="0..23" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeMinute" qualifier="TimeMinute" startByte="4" startBit="0" bitLength="8" dataType="Linear: TimeMinute" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="Min">
+        <Conversion raw="0..59" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="TimeSecond" qualifier="TimeSecond" startByte="5" startBit="0" bitLength="8" dataType="Linear: TimeSecond" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal" unit="second">
+        <Conversion raw="0..59" factor="1" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="E681" name="DID 0xE681" qualifier="DID_0xE681" variants="APP" length="2">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Vehicle Speed" qualifier="Vehicle_Speed" startByte="0" startBit="0" bitLength="16" dataType="Linear: Vehicle Speed" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="km/h">
+        <Conversion raw="0..8190" factor="0.0625" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="E682" name="DID 0xE682" qualifier="DID_0xE682" variants="APP" length="3">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Total Odometer" qualifier="Total_Odometer" startByte="0" startBit="0" bitLength="24" dataType="Linear: Total Odometer" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Float64 64 bit" displayFormat="Float" unit="km">
+        <Conversion raw="..9999999" factor="0.1" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="E683" name="DID 0xE683" qualifier="DID_0xE683" variants="APP" length="2">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="ECU Voltage" qualifier="ECU_Voltage" startByte="0" startBit="0" bitLength="16" dataType="Linear: ECU Voltage" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Float32 32 bit" displayFormat="Float" unit="V">
+        <Conversion raw="0..180" factor="0.1" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="F013" name="Vehicle Manufacturer Logistic Software Part Number" qualifier="Vehicle_Manufacturer_Logistic_Software_Part_Number" variants="APP" length="16">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Vehicle Manufacturer Logistic Software Part Number" qualifier="Vehicle_Manufacturer_Logistic_Software_Part_Number" startByte="0" startBit="0" bitLength="128" dataType="Identical: ASCII (16Byte)" codedType="ASCII 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 16" displayFormat="Text" />
+    </DID>
+    <DID id="F020" name="Read Public Key status" qualifier="Read_Public_Key_status" variants="Boot" length="1">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Public Key status" qualifier="Public_Key_status" startByte="0" startBit="0" bitLength="8" dataType="Identical: BitMap(1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Binary" />
+    </DID>
+    <DID id="F021" name="Write Public Key" qualifier="Write_Public_Key" variants="Boot" length="258">
+      <Write sid="2E" sessions="All" security="All" />
+      <DataElement name="Public Key" qualifier="Public_Key" startByte="0" startBit="0" bitLength="2064" dataType="Identical: HexField (258 Byte)" codedType="Unsigned 8 bit x 258" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 258" displayFormat="Hex" />
+    </DID>
+    <DID id="F031" name="Vehicle Manufacturer Calibration Data Part Number" qualifier="Vehicle_Manufacturer_Calibration_Data_Part_Number" variants="APP" length="16">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Vehicle Manufacturer Calibration Data Part Number" qualifier="Vehicle_Manufacturer_Calibration_Data_Part_Number" startByte="0" startBit="0" bitLength="128" dataType="Identical: ASCII (16Byte)" codedType="ASCII 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 16" displayFormat="Text" />
+    </DID>
+    <DID id="F089" name="Vehicle Manufacturer ECU Hardware Version Number Data Identifier" qualifier="Vehicle_Manufacturer_ECU_Hardware_Version_Number_Data_Identifier" variants="APP" length="24">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="vehicleManufacturerECUHardwareVersionNumberDataIdentifier" qualifier="vehicleManufacturerECUHardwareVersionNumberDataIdentifier" startByte="0" startBit="0" bitLength="192" dataType="Identical: ASCII (24Byte)" codedType="ASCII 8 bit x 24" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 24" displayFormat="Text" />
+    </DID>
+    <DID id="F090" name="Vehicle Manufacturer ECU Backup Software Version Number Data Identifier" qualifier="Vehicle_Manufacturer_ECU_Backup_Software_Version_Number_Data_Identifier" variants="APP" length="24">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="vehicleManufacturerECUBackupSoftwareVersionNumberDataIdentifier" qualifier="vehicleManufacturerECUBackupSoftwareVersionNumberDataIdentifier" startByte="0" startBit="0" bitLength="192" dataType="Identical: ASCII (24Byte)" codedType="ASCII 8 bit x 24" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 24" displayFormat="Text" />
+    </DID>
+    <DID id="F091" name="Mapping between DTC and DTC Number" qualifier="Mapping_between_DTC_and_DTC_Number" variants="APP" length="56">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Supplier Number" qualifier="Supplier_Number" startByte="0" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 1" qualifier="DTC_Number_1_6" startByte="1" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 1" qualifier="Fault_Number_1" startByte="4" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 2" qualifier="DTC_Number_2" startByte="6" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 2" qualifier="Fault_Number_2" startByte="9" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 3" qualifier="DTC_Number_3" startByte="11" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 3" qualifier="Fault_Number_3" startByte="14" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 4" qualifier="DTC_Number_4" startByte="16" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 4" qualifier="Fault_Number_4" startByte="19" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 5" qualifier="DTC_Number_5" startByte="21" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 5" qualifier="Fault_Number_5" startByte="24" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 6" qualifier="DTC_Number_6" startByte="26" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 6" qualifier="Fault_Number_6" startByte="29" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 7" qualifier="DTC_Number_7" startByte="31" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 7" qualifier="Fault_Number_7" startByte="34" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 8" qualifier="DTC_Number_8" startByte="36" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 8" qualifier="Fault_Number_8" startByte="39" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 9" qualifier="DTC_Number_9" startByte="41" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 9" qualifier="Fault_Number_9" startByte="44" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 10" qualifier="DTC_Number_10" startByte="46" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 10" qualifier="Fault_Number_10" startByte="49" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+      <DataElement name="DTC Number 11" qualifier="DTC_Number_11" startByte="51" startBit="0" bitLength="24" dataType="Identical: HexDump (3 Byte)" codedType="Unsigned 24 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 24 bit" displayFormat="Hex" />
+      <DataElement name="Fault Number 11" qualifier="Fault_Number_11" startByte="54" startBit="0" bitLength="16" dataType="Identical: HexDump (2 Byte)" codedType="Unsigned 16 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 16 bit" displayFormat="Hex" />
+    </DID>
+    <DID id="F0F0" name="RunningAreaInfo" qualifier="RunningAreaInfo" variants="APP" length="1">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="RunningAreaInfo" qualifier="RunningAreaInfo" startByte="0" startBit="0" bitLength="8" dataType="Text table: Running Area Info" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="65">Partition A</Value>
+        <Value raw="66">Partition B</Value>
+      </DataElement>
+    </DID>
+    <DID id="F0F1" name="Update Tried Counter" qualifier="Update_Tried_Counter" variants="APP" length="4">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Update Tried Counter" qualifier="Update_Tried_Counter" startByte="0" startBit="0" bitLength="32" dataType="Linear: Counter_4Byte" codedType="Unsigned 32 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0.." factor="1" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="F0F3" name="Dependecy Check Success Counter" qualifier="Dependecy_Check_Success_Counter" variants="APP" length="4">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Dependecy Check Success Counter" qualifier="Dependecy_Check_Success_Counter" startByte="0" startBit="0" bitLength="32" dataType="Linear: Counter_4Byte" codedType="Unsigned 32 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0.." factor="1" offset="0" />
+      </DataElement>
+    </DID>
+    <DID id="F107" name="Vehicle Manufacture ECU Application Diagnostic Database Part And Version Number" qualifier="Vehicle_Manufacture_ECU_Application_Diagnostic_Database_Part_And_Version_Number" variants="APP" length="9">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Vehicle Manufacture ECU Application Diagnostic Database Number" qualifier="Vehicle_Manufacture_ECU_Application_Diagnostic_Database_Number" startByte="0" startBit="0" bitLength="8" dataType="Identical: ASCII (11Byte)" codedType="BCD 8 bit" byteOrder="Big endian (Motorola)" physicalType="BCD 8 bit" displayFormat="Decimal" />
+      <DataElement name="Vehicle Manufacture ECU Application Diagnostic Version Number" qualifier="Vehicle_Manufacture_ECU_Application_Diagnostic_Version_Number" startByte="1" startBit="0" bitLength="64" dataType="Identical: ASCII (8Byte)" codedType="ASCII 8 bit x 8" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 8" displayFormat="Text" />
+    </DID>
+    <DID id="F15B" name="Read Fingerprint" qualifier="Read_Fingerprint" variants="Boot" length="15">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="YY" qualifier="YY" startByte="0" startBit="0" bitLength="8" dataType="Identical: BCD (1Byte)" codedType="BCD 8 bit" byteOrder="Big endian (Motorola)" physicalType="BCD 8 bit" displayFormat="Decimal" />
+      <DataElement name="MM" qualifier="MM" startByte="1" startBit="0" bitLength="8" dataType="Identical: BCD (1Byte)" codedType="BCD 8 bit" byteOrder="Big endian (Motorola)" physicalType="BCD 8 bit" displayFormat="Decimal" />
+      <DataElement name="DD" qualifier="DD" startByte="2" startBit="0" bitLength="8" dataType="Identical: BCD (1Byte)" codedType="BCD 8 bit" byteOrder="Big endian (Motorola)" physicalType="BCD 8 bit" displayFormat="Decimal" />
+      <DataElement name="Fingerprint repair Shop Code" qualifier="Fingerprint_repair_Shop_Code" startByte="3" startBit="0" bitLength="96" dataType="Identical: ASCII (12Byte)" codedType="ASCII 8 bit x 12" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 12" displayFormat="Text" />
+    </DID>
+    <DID id="F160" name="Signature Public Key Status" qualifier="Signature_Public_Key_Status" variants="APP" length="1">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="SignaturePublicKeyStatus" qualifier="SignaturePublicKeyStatus" startByte="0" startBit="0" bitLength="8" dataType="Text table: Signature public key status" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unicode 16 bit x 0..65535" displayFormat="Text">
+        <Value raw="0">Unsigned public key</Value>
+        <Value raw="1">Chery officially signed the public key</Value>
+        <Value raw="2">Not Chery's officially signed public key</Value>
+      </DataElement>
+    </DID>
+    <DID id="F162" name="Hash value of the current application software version" qualifier="Hash_value_of_the_current_application_software_version" variants="APP" length="100">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Number of Applications" qualifier="Number_of_Applications" startByte="0" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="Application number" qualifier="Application_number" startByte="1" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="Application Number 1 Hash Length" qualifier="Application_Number_1_Hash_Length" startByte="2" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="Application Number 1 Hash Value" qualifier="Application_Number_1_Hash_Value" startByte="3" startBit="0" bitLength="256" dataType="Identical: HexField (32 Byte)" codedType="Unsigned 8 bit x 32" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 32" displayFormat="Hex" />
+      <DataElement name="Unused Data" qualifier="Unused_Data" startByte="35" startBit="0" bitLength="520" dataType="Identical: HexDump (65 Bytes)" codedType="Unsigned 8 bit x 65" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 65" displayFormat="Hex" />
+    </DID>
+    <DID id="F163" name="Hash value of the current calibration software version" qualifier="Hash_value_of_the_current_calibration_software_version" variants="APP" length="100">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Number of Calibration" qualifier="Number_of_Calibration" startByte="0" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="Calibrationnumber" qualifier="Calibrationnumber" startByte="1" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="CalibrationNumber 1 Hash Length" qualifier="CalibrationNumber_1_Hash_Length" startByte="2" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+      <DataElement name="CalibrationNumber 1 Hash Value" qualifier="CalibrationNumber_1_Hash_Value" startByte="3" startBit="0" bitLength="256" dataType="Identical: HexField (32 Byte)" codedType="Unsigned 8 bit x 32" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 32" displayFormat="Hex" />
+      <DataElement name="Unused Data" qualifier="Unused_Data" startByte="35" startBit="0" bitLength="520" dataType="Identical: HexDump (65 Bytes)" codedType="Unsigned 8 bit x 65" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit x 65" displayFormat="Hex" />
+    </DID>
+    <DID id="F180" name="Boot Software Identification" qualifier="Boot_Software_Identification" variants="APP" length="32">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="DataRecord" qualifier="DataRecord" startByte="0" startBit="0" bitLength="256" dataType="Identical: ASCII (32Byte)" codedType="ASCII 8 bit x 32" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 32" displayFormat="Text" />
+    </DID>
+    <DID id="F180" name="Boot Software Identification" qualifier="Boot_Software_Identification" variants="Boot" length="32">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="DataRecord" qualifier="DataRecord" startByte="0" startBit="0" bitLength="256" dataType="Identical: ASCII (32Byte)" codedType="ASCII 8 bit x 32" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 32" displayFormat="Text" />
+    </DID>
+    <DID id="F184" name="Application Software Fingerprint Data Identifier" qualifier="Application_Software_Fingerprint_Data_Identifier" variants="APP" length="19">
+      <Read sid="22" sessions="All" security="All" />
+      <Write sid="2E" sessions="ProgrammingSession" security="Unlocked_0x11" />
+      <DataElement name="Programming Year" qualifier="Programming_Year" startByte="0" startBit="0" bitLength="8" dataType="Linear: Programming Year" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="0..255" factor="1" offset="2000" />
+      </DataElement>
+      <DataElement name="Programming Month" qualifier="Programming_Month" startByte="1" startBit="0" bitLength="8" dataType="Linear: Programming Month" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..12" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="Programming Date" qualifier="Programming_Date" startByte="2" startBit="0" bitLength="8" dataType="Linear: Programming Date" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Decimal">
+        <Conversion raw="1..31" factor="1" offset="0" />
+      </DataElement>
+      <DataElement name="Device Number" qualifier="Device_Number" startByte="3" startBit="0" bitLength="128" dataType="Identical: ASCII (16Byte)" codedType="ASCII 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 16" displayFormat="Text" />
+    </DID>
+    <DID id="F186" name="Active Diagnostic Session" qualifier="Active_Diagnostic_Session" variants="APP" length="1">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="Active Diagnostic Session" qualifier="Active_Diagnostic_Session" startByte="0" startBit="0" bitLength="8" dataType="Identical: HexDump (1 Byte)" codedType="Unsigned 8 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 8 bit" displayFormat="Hex" />
+    </DID>
+    <DID id="F187" name="Vehicle Manufacturer Spare Part Number Data Identifier" qualifier="Vehicle_Manufacturer_Spare_Part_Number_Data_Identifier" variants="APP" length="16">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="vehicleManufacturerSparePartNumberDataIdentifier" qualifier="vehicleManufacturerSparePartNumberDataIdentifier" startByte="0" startBit="0" bitLength="128" dataType="Identical: ASCII (16Byte)" codedType="ASCII 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 16" displayFormat="Text" />
+    </DID>
+    <DID id="F187" name="Vehicle manufacturer spare part number" qualifier="Vehicle_manufacturer_spare_part_number" variants="Boot" length="16">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="DataRecord" qualifier="DataRecord" startByte="0" startBit="0" bitLength="128" dataType="Identical: ASCII (16Byte)" codedType="ASCII 8 bit x 16" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 16" displayFormat="Text" />
+    </DID>
+    <DID id="F189" name="Vehicle Manufacturer ECU Software Version Number Data Identifier" qualifier="Vehicle_Manufacturer_ECU_Software_Version_Number_Data_Identifier" variants="APP" length="24">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="Vehicle_Manufacturer_ECU_Software_Version_Number_Data_Identifier" qualifier="Vehicle_Manufacturer_ECU_Software_Version_Number_Data_Identifier" startByte="0" startBit="0" bitLength="192" dataType="Identical: ASCII (24Byte)" codedType="ASCII 8 bit x 24" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 24" displayFormat="Text" />
+    </DID>
+    <DID id="F18A" name="System Supplier Identifier Data Identifier" qualifier="System_Supplier_Identifier_Data_Identifier" variants="APP" length="10">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="systemSupplierIdentifierDataIdentifier" qualifier="systemSupplierIdentifierDataIdentifier" startByte="0" startBit="0" bitLength="80" dataType="Identical: ASCII (10Byte)" codedType="ASCII 8 bit x 10" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 10" displayFormat="Text" />
+    </DID>
+    <DID id="F18A" name="System supplier identifier" qualifier="System_supplier_identifier" variants="Boot" length="3">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="DataRecord" qualifier="DataRecord" startByte="0" startBit="0" bitLength="24" dataType="Identical: ASCII (3Byte)" codedType="ASCII 8 bit x 3" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 3" displayFormat="Text" />
+    </DID>
+    <DID id="F18B" name="ECU manufacturing date" qualifier="ECU_manufacturing_date" variants="APP" length="4">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="ECU manufacturing date" qualifier="ECU_manufacturing_date" startByte="0" startBit="0" bitLength="32" dataType="Identical: HexDump (4 Byte)" codedType="Unsigned 32 bit" byteOrder="Big endian (Motorola)" physicalType="Unsigned 32 bit" displayFormat="Hex" />
+    </DID>
+    <DID id="F18C" name="ECU Serial Number" qualifier="ECU_Serial_Number" variants="APP" length="36">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="ECU Serial Number" qualifier="ECU_Serial_Number" startByte="0" startBit="0" bitLength="288" dataType="Identical: ASCII (36Byte)" codedType="ASCII 8 bit x 36" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 36" displayFormat="Text" />
+    </DID>
+    <DID id="F190" name="VIN Data Identifier" qualifier="VIN_Data_Identifier" variants="APP" length="17">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <Write sid="2E" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1" />
+      <DataElement name="VINDataIdentifier" qualifier="VINDataIdentifier" startByte="0" startBit="0" bitLength="136" dataType="Identical: ASCII (17Byte)" codedType="ASCII 8 bit x 17" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 17" displayFormat="Text" />
+    </DID>
+    <DID id="F191" name="Vehicle manufacturer ECU hardware number" qualifier="Vehicle_manufacturer_ECU_hardware_number" variants="Boot" length="5">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="DataRecord" qualifier="DataRecord" startByte="0" startBit="0" bitLength="40" dataType="Identical: ASCII (5Byte)" codedType="ASCII 8 bit x 5" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 5" displayFormat="Text" />
+    </DID>
+    <DID id="F193" name="System Supplier ECU Hardware Version Number Data Identifier" qualifier="System_Supplier_ECU_Hardware_Version_Number_Data_Identifier" variants="APP" length="24">
+      <Read sid="22" sessions="All" security="All" />
+      <DataElement name="systemSupplierECUHardwareVersionNumberDataIdentifier" qualifier="systemSupplierECUHardwareVersionNumberDataIdentifier" startByte="0" startBit="0" bitLength="192" dataType="Identical: ASCII (24Byte)" codedType="ASCII 8 bit x 24" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 24" displayFormat="Text" />
+    </DID>
+    <DID id="F195" name="System Supplier ECU Software Version Number Data Identifier" qualifier="System_Supplier_ECU_Software_Version_Number_Data_Identifier" variants="APP" length="24">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="systemSupplierECUSoftwareVersionNumberDataIdentifier" qualifier="systemSupplierECUSoftwareVersionNumberDataIdentifier" startByte="0" startBit="0" bitLength="192" dataType="Identical: ASCII (24Byte)" codedType="ASCII 8 bit x 24" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 24" displayFormat="Text" />
+    </DID>
+    <DID id="F197" name="System Name" qualifier="System_Name" variants="APP" length="10">
+      <Read sid="22" sessions="DefaultSession, ExtendedDiagnosticSession" security="Locked, Unlocked_0x1" />
+      <DataElement name="systemName" qualifier="systemName" startByte="0" startBit="0" bitLength="80" dataType="Identical: ASCII (10Byte)" codedType="ASCII 8 bit x 10" byteOrder="Big endian (Motorola)" physicalType="ASCII 8 bit x 10" displayFormat="Text" />
+    </DID>
+  </DIDs>
+  <DTCs count="33">
+    <FaultMemory variant="Record pool (no variant)">
+      <DTC id="C41881" code="U0418-81" description="Invalid Data Received From ONEBOX">
+        <Field name="DS_DTCTestFailedCondition">For 0x098、0x22B 、0x24B(E01)message，
+0x098、0x24B(M32T 9MA)
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">20ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Abnormality in the integrated brake controller;
+5. Fault of the integrated brake controller
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (20ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (20ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG4
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG4
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG4
+EVHND_EVENT_MSG_ONEBOX_1_INVALIDDATA
+EVHND_EVENT_MSG_ONEBOX_3_INVALIDDATA
+EVHND_EVENT_MSG_ONEBOX_4_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C42081" code="U0420-81" description="Invalid Data Received from EPS (CAN signal: SAS)">
+        <Field name="DS_DTCTestFailedCondition">For 0x132 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Electric power steering controller malfunction;
+5. Electric power steering controller failure
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (10ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (10ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_SAS_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_SAS_1
+EVHND_EVENT_CUSV_WRONG_CRC_SAS_1
+EVHND_EVENT_MSG_SAS_1_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C44381" code="U0443-81" description="Invalid Data Received From VCU">
+        <Field name="DS_DTCTestFailedCondition">For 0x4B9、0x038、0x03B message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Abnormalities in the vehicle control computing center;
+5. Failure in the vehicle control calculation center
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (100ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (100ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_2_G
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_COM_10
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_2_G
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_COM_10
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_2_G
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_COM_10
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_ONEBOX_11
+EVHND_EVENT_MSG_VCU_COM_10_INVALIDDATA
+EVHND_EVENT_MSG_VCU_FLZCU_28_INVALIDDATA
+EVHND_EVENT_MSG_VCU_ONEBOX_11_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C44481" code="U0444-81" description="Invalid Data Received From FLZCU/FRZCU">
+        <Field name="DS_DTCTestFailedCondition">For 0x23B、0x49D、0x2AB、0x2BB message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Left zone controller abnormal;
+5. Left zone controller failure
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (100ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (100ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: DOW&amp;BSD Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_FLZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FLZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FLZCU_1
+EVHND_EVENT_MSG_FLZCU_9_INVALIDDATA
+
+EVHND_EVENT_CUSV_ALIVE_COUNTER_FRZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FRZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FRZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_RZCU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RZCU_2
+EVHND_EVENT_CUSV_WRONG_CRC_RZCU_2</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C45281" code="U0452-81" description="Invalid Data Received From ACU">
+        <Field name="DS_DTCTestFailedCondition">For 0x031、0x021 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Airbag controller malfunction abnormal;
+5. Airbag controller malfunction
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (10ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (10ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_ACU_2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ACU_3
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ACU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ACU_3
+EVHND_EVENT_CUSV_WRONG_CRC_ACU_2
+EVHND_EVENT_CUSV_WRONG_CRC_ACU_3
+EVHND_EVENT_MSG_ACU_2_INVALIDDATA
+EVHND_EVENT_MSG_ACU_3_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D43681" code="U1436-81" description="Invalid Data Received From RRCR">
+        <Field name="DS_DTCTestFailedCondition">For 0x4F7 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Rear right corner radar abnormality;
+5. Rear right-corner radar malfunction
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (100ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (100ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus off failure recovery delay for 3s (check if it occurs)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)
+7. Not in Roller station mode (mandatory test item)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: RCTB&amp;RCW Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_RRCR_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RRCR_2
+EVHND_EVENT_CUSV_WRONG_CRC_RRCR_2
+EVHND_EVENT_MSG_RRCR_2_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D48781" code="U1487-81" description="Invalid Data Received From FLZCU(VCU)/PDCS(VCU)">
+        <Field name="DS_DTCTestFailedCondition">For 0x4B9、0x038、0x03B、 0x23B、0x49D、0x2AB、0x2BB (E01)  message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">1.The corresponding fault recovered
+2.Configuration word xxx doesn't exist</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. XXX controller malfunction;
+5. XXX fault
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10 cycles (1000ms)</Field>
+        <Field name="DS_DTCDequalification">3 cycles (1000ms)</Field>
+        <Field name="DS_DTCTestEnableCriteria">1. PowerMode = ON for 3s (mandatory item)
+2. System reset for 3s (check item if it appears)
+3. Battery in normal voltage (9v-16v) or recovery from abnormal voltage for 3s (test item if detected)
+4. CAN Bus Off failure recovery delay for 3s (if it occurs, check the item; Busoff failure does not include this item)
+5. Service $85_02 deactivate (mandatory check)
+6. In the case of received messages (check items when they appear)</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_FLZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_FRZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_RZCU_2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_2_G
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_COM_10
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FLZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FRZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RZCU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_2_G
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_COM_10
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_WRONG_CRC_FLZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FRZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_RZCU_2
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_2_G
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_COM_10
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_ONEBOX_11
+EVHND_EVENT_MSG_FLZCU_9_INVALIDDATA
+EVHND_EVENT_MSG_VCU_COM_10_INVALIDDATA
+EVHND_EVENT_MSG_VCU_ONEBOX_11_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+    </FaultMemory>
+    <FaultMemory variant="APP" name="Primary Fault Memory">
+      <DTC id="570016" code="C1700-16" description="Supply voltage of the ECU is too low">
+        <Field name="Errortext shortname">Supply voltage of the ECU is too low</Field>
+        <Field name="DS_DTCTestFailedCondition">Vbat  is &lt; 8.8 [Volts]</Field>
+        <Field name="DS_DTCTestPassedCondition">Vbat  is  &gt; 9.2 [Volts]</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Check the power supply</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">5s</Field>
+        <Field name="DS_DTCDequalification">5s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All function failure</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_POWER_SUPPLY_HIGH</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="570117" code="C1701-17" description="Supply voltage of the ECU is too high">
+        <Field name="Errortext shortname">Supply voltage of the ECU is too high</Field>
+        <Field name="DS_DTCTestFailedCondition">Vbat is &gt; 16.2 [Volts]</Field>
+        <Field name="DS_DTCTestPassedCondition">Vbat is &lt; 15.8 [Volts]</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Check the power supply</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">5s</Field>
+        <Field name="DS_DTCDequalification">5s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_POWER_SUPPLY_HIGH</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="570276" code="C1702-76" description="Radar Alignment failure">
+        <Field name="Errortext shortname">Radar Alignment failure</Field>
+        <Field name="DS_DTCTestFailedCondition">Calibration Finished &amp;&amp;
+( Azimuth misalignment error &gt; 5°  or 
+Elevation misalignment error&gt; 3° )</Field>
+        <Field name="DS_DTCTestPassedCondition">Calibration Finished &amp;&amp;
+(Azimuth misalignment error  &lt;= 5°  &amp;&amp;
+Elevation misalignment error  &lt;= 3°)</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Check The Sensor Alignment ; Check the bumper</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">0s</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">( 1.PowerMode=ON for 3s
+2.System reset for 3s
+3.Battery in normal voltage（9v-16v）or recovery from abnormal voltage for 3s
+4.Service $85_02 deactivate )
+The system state is operational.
+Successfull Base Calibration.
+5. CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All function failure</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_AC_SOCCALIBRATIONFAILED</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="570311" code="C1703-11" description="LED short circuit">
+        <Field name="DS_DTCTestFailedCondition">The circuit short-circuit to ground lasts for 1 second</Field>
+        <Field name="DS_DTCTestPassedCondition">Power on again to self-check and find no short circuit</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Check the LED circuit</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">1000ms</Field>
+        <Field name="DS_DTCDequalification">1000ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: DOW&amp;BSD Function failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="570492" code="C1704-92" description="Radar Blindness">
+        <Field name="DS_DTCTestFailedCondition">Blockage of the Radar Antennas is detected.</Field>
+        <Field name="DS_DTCTestPassedCondition">Error Criterion is no longer available.
+OR
+  (Sleep-wake 
+   And 
+  Error Criterion is no longer available.)
+OR
+   Clear DTC</Field>
+        <Field name="DS_DTCTestFrequency">1000 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">3</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Check Radar Position</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">5 min</Field>
+        <Field name="DS_DTCDequalification">1 min</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for [ Err_StartUpSuppression ]
+AND 
+    System reset for [ Err_StartUpSuppression ] since after ECU is waken-up by NetWork Management
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) 
+          OR 
+         (Vehicle Battery Voltage recovery from abnormal voltage for  [ Err_StartUpSuppression ] ))
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">SW_EVENT_SPE_BLOCKAGEDETECTED
+SW_EVENT_SPE_BLOCKAGESUSPICIONDETECTED
+SW_EVENT_SPE_BLOCKAGEDEFECTDETECTED</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_SPE_BLOCKAGEDETECTED
+EVHND_EVENT_SPE_BLOCKAGESUSPICIONDETECTED
+EVHND_EVENT_SPE_BLOCKAGEDEFECTDETECTED</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+        <Field name="DS_DTCExistingExtendedDataRecordNumbers">tbd</Field>
+      </DTC>
+      <DTC id="570556" code="C1705-56" description="Configuration is invalid">
+        <Field name="DS_DTCTestFailedCondition">Radar ground identifies the installation location by address but does not match the storage installation location</Field>
+        <Field name="DS_DTCTestPassedCondition">Radar ground identifies the installation location by addressing the installation location and matches the storage installation location</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Event</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Reinstall the radar</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">0ms</Field>
+        <Field name="DS_DTCDequalification">1000ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="57064B" code="C1706-4B" description="Radar over temperature">
+        <Field name="DS_DTCTestFailedCondition">Monitor temperature≥ 140°C continuous 250ms to report DTC (9CX).</Field>
+        <Field name="DS_DTCTestPassedCondition">Monitor temperature≤ 120°C for 250ms (9CX).</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">3</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Radar replacement</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">250ms</Field>
+        <Field name="DS_DTCDequalification">100ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">Assuming that MCU chip temperature≥ 115°C 500ms (9BJ) for others supplier.
+Monitor temperature≥ 140°C continuous 250ms to report DTC (9CX) is for Hella as NXP HW capacity.
+Similar reason for: MCU chip temperature≤ 110°C 500ms (9BJ) and Monitor temperature≤ 120°C for 250ms (9CX).</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="570742" code="C1707-42" description="Internal electronic components error">
+        <Field name="DS_DTCTestFailedCondition">1. Abnormal wave emission sequence
+2. Power supply abnormalities
+3. Abnormal transmission power</Field>
+        <Field name="DS_DTCTestPassedCondition">1. Abnormal wave timing recovery from wave emission sequence
+2. Power abnormal recovery
+3. Abnormal transmission power recovery</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Event</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">40</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Radar replacement</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">0ms</Field>
+        <Field name="DS_DTCDequalification">1000ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">1. WDGM program flow monitoring anomaly is NOT supported by Hella system (1. WDGM program stream monitoring abnormal recovery also).</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C12987" code="U0129-87" description="Lost Communication With ONEBOX">
+        <Field name="Errortext shortname">Lost Communication With ONEBOX</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (ONEBOX_1, ONEBOX_4)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages: 
+ONEBOX_1, ONEBOX_4.</Field>
+        <Field name="DS_DTCTestFrequency">10  ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">25</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">500 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C13187" code="U0131-87" description="Lost Communication With EPS">
+        <Field name="Errortext shortname">Lost Communication With EPS</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (SAS_1)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages: 
+SAS_1.</Field>
+        <Field name="DS_DTCTestFrequency">10 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">50</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">500 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C14187" code="U0141-87" description="Lost Communication With FLZCU">
+        <Field name="Errortext shortname">Lost Communication With FLZCU</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (FLZCU_1)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages:  FLZCU_1.</Field>
+        <Field name="DS_DTCTestFrequency">20 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">25</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">500 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C15187" code="U0151-87" description="Lost Communication With ACU">
+        <Field name="Errortext shortname">Lost Communication With ACU</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (ACU_3)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages: 
+ACU_3.</Field>
+        <Field name="DS_DTCTestFrequency">10 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">50</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">500 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C24587" code="U0245-87" description="Lost Communication With ICC">
+        <Field name="Errortext shortname">Lost Communication With ICC</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (ICC_COM_8)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages:  ICC_COM_8.</Field>
+        <Field name="DS_DTCTestFrequency">500 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">8</Field>
+        <Field name="DS_DTCPriority">1</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">4000 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C29387" code="U0293-87" description="Lost Communication With FLZCU((VCU)/PDCS(VCU)">
+        <Field name="Errortext shortname">Lost Communication With FLZCU((VCU)/PDCS(VCU)</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (VCU_COM_10)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages:  VCU_COM_10.</Field>
+        <Field name="DS_DTCTestFrequency">1000 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">50</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">500 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C41881" code="U0418-81" description="Invalid Data Received From ONEBOX">
+        <Field name="DS_DTCTestFailedCondition">For 0x098、0x22B 、0x24B(E01)message，
+0x098、0x24B(M32T 9MA)
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">20ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Abnormality in the integrated brake controller;
+5. Fault of the integrated brake controller
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">200ms</Field>
+        <Field name="DS_DTCDequalification">60ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ONEBOX_4_SG4
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ONEBOX_4_SG4
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_1_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_1_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_3_SG4
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG1
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG2
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG3
+EVHND_EVENT_CUSV_WRONG_CRC_ONEBOX_4_SG4
+EVHND_EVENT_MSG_ONEBOX_1_INVALIDDATA
+EVHND_EVENT_MSG_ONEBOX_3_INVALIDDATA
+EVHND_EVENT_MSG_ONEBOX_4_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C42081" code="U0420-81" description="Invalid Data Received from EPS">
+        <Field name="DS_DTCTestFailedCondition">For 0x132 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Electric power steering controller malfunction;
+5. Electric power steering controller failure
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">100ms</Field>
+        <Field name="DS_DTCDequalification">30ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_SAS_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_SAS_1
+EVHND_EVENT_CUSV_WRONG_CRC_SAS_1
+EVHND_EVENT_MSG_SAS_1_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C44481" code="U0444-81" description="Invalid Data Received From FLZCU">
+        <Field name="DS_DTCTestFailedCondition">For 0x23B、0x49D、0x2AB、0x2BB message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Left zone controller abnormal;
+5. Left zone controller failure
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">1000ms</Field>
+        <Field name="DS_DTCDequalification">300ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: DOW&amp;BSD Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_FLZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FLZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FLZCU_1
+EVHND_EVENT_MSG_FLZCU_9_INVALIDDATA
+
+EVHND_EVENT_CUSV_ALIVE_COUNTER_FRZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FRZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FRZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_RZCU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RZCU_2
+EVHND_EVENT_CUSV_WRONG_CRC_RZCU_2</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="C45281" code="U0452-81" description="Invalid Data Received From ACU">
+        <Field name="DS_DTCTestFailedCondition">For 0x031、0x021 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">10ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Airbag controller malfunction abnormal;
+5. Airbag controller malfunction
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">100ms</Field>
+        <Field name="DS_DTCDequalification">30ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_ACU_2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_ACU_3
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ACU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_ACU_3
+EVHND_EVENT_CUSV_WRONG_CRC_ACU_2
+EVHND_EVENT_CUSV_WRONG_CRC_ACU_3
+EVHND_EVENT_MSG_ACU_2_INVALIDDATA
+EVHND_EVENT_MSG_ACU_3_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D02688" code="U1026-88" description="Driving Assistance Control Module Communication Bus Off">
+        <Field name="Errortext shortname">VCAN DACM Bus Off</Field>
+        <Field name="DS_DTCTestFailedCondition">CanSM has detected an VCAN DACM  bus-off event.</Field>
+        <Field name="DS_DTCTestPassedCondition">VCAN DACM  is in bus-on (i.e. not in bus-off) state.</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check if XXX can send messages normally, check for faults);
+
+Or connectors (loose), wiring harnesses (open circuit, power disconnected, fuse blown, terminating resistor, field EMC);
+
+Or CAN line (whether CANH and CANL are short-circuited; whether CANH is short-circuited to ground; whether CANL is short-circuited to power);
+
+Or others (check for condensation inside the controller);
+
+Step 2: Let stand for 30 seconds, use a diagnostic tool to clear fault 0x14, then restart for a period of time to check if the fault persists;
+
+Step 3: If the fault still exists, power cycle the controller and check if the fault is cleared;
+
+Step 4: If the fault still exists, after-sales service should use professional instruments to troubleshoot the fault or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">2s</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">3s after power up</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_VEHICLE_BUS_VCAN_BUSOFF</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D04088" code="U1040-88" description="ADCC and RLCR Control Module Communication Bus Off">
+        <Field name="DS_DTCTestFailedCondition">ECU cannot recover from bus-off state through the { fast recovery for X times 
+OR
+slow recovery for Y times }</Field>
+        <Field name="DS_DTCTestPassedCondition">transmits CAN frames properly without error frames</Field>
+        <Field name="DS_DTCTestFrequency">1000 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">X = 5 
+Y = 1</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC ADCC and RLCR Control Module Communication Bus Off is not detected) OR (DTC ADCC and RLCR Control Module Communication Bus Off recovery delay for 3 seconds))
+AND
+   CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">SYS_EVENT_VEHICLE_BUS_INPUTSIGNAL_NOTRECEIVED_ERROR</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_VEHICLE_BUS_PCAN_BUSOFF</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+        <Field name="DS_DTCExistingExtendedDataRecordNumbers">tbd</Field>
+      </DTC>
+      <DTC id="D04188" code="U1041-88" description="ADCC and RRCR Control Module Communication Bus Off">
+        <Field name="DS_DTCTestFailedCondition">ECU cannot recover from bus-off state through the { fast recovery for X times 
+OR
+slow recovery for Y times }</Field>
+        <Field name="DS_DTCTestPassedCondition">transmits CAN frames properly without error frames</Field>
+        <Field name="DS_DTCTestFrequency">1000 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">X = 5 
+Y = 1</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC ADCC and RRCR Control Module Communication Bus Off is not detected) OR (DTC ADCC and RRCR Control Module Communication Bus Off recovery delay for 3 seconds))
+AND
+   CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">SYS_EVENT_VEHICLE_BUS_INPUTSIGNAL_NOTRECEIVED_ERROR</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_VEHICLE_BUS_PCAN_BUSOFF</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+        <Field name="DS_DTCExistingExtendedDataRecordNumbers">tbd</Field>
+      </DTC>
+      <DTC id="D16987" code="U1169-87" description="Lost Communication With RRCR">
+        <Field name="Errortext shortname">Lost Communication With RRCR</Field>
+        <Field name="DS_DTCTestFailedCondition">When any of DA CAN Frames (RRCR_2)  are not received on Bus.</Field>
+        <Field name="DS_DTCTestPassedCondition">No timeout of the received DA messages: 
+RRCR_2.</Field>
+        <Field name="DS_DTCTestFrequency">100 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">20</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Step 1: Check relevant components (check whether the integrated brake controller can send messages normally and if there are any faults);
+           or connectors (loose), wiring harnesses (open circuit, missed power supply, blown fuse, terminal resistor, on-site EMC);
+           Or CAN line (whether CANH is short-circuited with CANL; Whether CANH is short-circuited to ground; Whether CANL is short-circuited to the power supply);
+           or other (check for condensation inside the controller);
+Step 2: Let it sit for 30 seconds, use the diagnostic device to 0x14 and clear the fault. After clearing, run again for a period to check if the fault exists;
+Step 3: If the fault still exists, power it back on and off again to check if the fault has been cleared;
+Step 4: If the fault persists, after-sales service will use professional instruments to troubleshoot or replace the controller;</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">2000 ms</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+    System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND  
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+    ((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D30151" code="U1301-51" description="The signature check public key used for refresh was not written">
+        <Field name="Errortext shortname">The signature check public key was not written</Field>
+        <Field name="DS_DTCTestFailedCondition">The detected public key status is that no public key has been written</Field>
+        <Field name="DS_DTCTestPassedCondition">The detected public key status is that public key has been written</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">3</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">Replacement of ECU</Field>
+        <Field name="DS_DTCDriverIndication">active</Field>
+        <Field name="DS_DTCQualification">0</Field>
+        <Field name="DS_DTCDequalification">0</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+
+AND 
+
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+
+AND  
+
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">Security signature check failure</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_PUBLICKEY_NOT_WRITTEN</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D43681" code="U1436-81" description="Invalid Data Received From RRCR">
+        <Field name="DS_DTCTestFailedCondition">For 0x4F7 message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">The corresponding fault recovered</Field>
+        <Field name="DS_DTCTestFrequency">100ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">2</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. Rear right corner radar abnormality;
+5. Rear right-corner radar malfunction
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">1000ms</Field>
+        <Field name="DS_DTCDequalification">300ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: RCTB&amp;RCW Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_RRCR_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RRCR_2
+EVHND_EVENT_CUSV_WRONG_CRC_RRCR_2
+EVHND_EVENT_MSG_RRCR_2_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="D48781" code="U1487-81" description="Invalid Data Received From FLZCU(VCU)/PDCS(VCU)">
+        <Field name="DS_DTCTestFailedCondition">For 0x4B9、0x038、0x03B、 0x23B、0x49D、0x2AB、0x2BB (E01)  message，
+any signal invalid、signal out of range 、DLC error、CRC、Checksum、alive counter fault</Field>
+        <Field name="DS_DTCTestPassedCondition">1.The corresponding fault recovered
+2.Configuration word xxx doesn't exist</Field>
+        <Field name="DS_DTCTestFrequency">1000ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">4</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Ignition_on_off</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="DS_DTCFailureCorrection">1. CAN hardware failure, including CAN-H and CAN-L;
+2. Bus line disconnection;
+3. Bus interference;
+4. XXX controller malfunction;
+5. XXX fault
+6. Network node random hardware failure; 
+7. Other causes: such as condensation inside the controller, water droplets condensing or evaporating, grounding interference, etc.;</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">10000ms</Field>
+        <Field name="DS_DTCDequalification">3000ms</Field>
+        <Field name="DS_DTCTestEnableCriteria">"Vehicle State PowerMode" is '0x2: ON' for 3 seconds.
+AND 
+	System reset for 3 seconds since after ECU is waken-up by NetWork Management
+AND 
+	$85 with subfunction 0x02 (Off DTC) is Deactivate
+AND	
+	((Vehicle Battery Voltage is in accepted range (9V-16V)) OR (Vehicle Battery Voltage recovery from abnormal voltage for 3 seconds))
+AND 
+	((DTC Driving Assistance Control Module Communication Bus Off is not detected) OR (DTC Driving Assistance Control Module Communication Bus Off recovery delay for 3 seconds))7. Not in Roller station mode (mandatory test item)
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Function failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">EVHND_EVENT_CUSV_ALIVE_COUNTER_FLZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_FRZCU_1
+EVHND_EVENT_CUSV_ALIVE_COUNTER_RZCU_2
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_2_G
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_COM_10
+EVHND_EVENT_CUSV_ALIVE_COUNTER_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FLZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_FRZCU_1
+EVHND_EVENT_CUSV_MISSING_MESSAGE_RZCU_2
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_2_G
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_COM_10
+EVHND_EVENT_CUSV_MISSING_MESSAGE_VCU_ONEBOX_11
+EVHND_EVENT_CUSV_WRONG_CRC_FLZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_FRZCU_1
+EVHND_EVENT_CUSV_WRONG_CRC_RZCU_2
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_2_G
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_COM_10
+EVHND_EVENT_CUSV_WRONG_CRC_VCU_ONEBOX_11
+EVHND_EVENT_MSG_FLZCU_9_INVALIDDATA
+EVHND_EVENT_MSG_VCU_COM_10_INVALIDDATA
+EVHND_EVENT_MSG_VCU_ONEBOX_11_INVALIDDATA</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+      </DTC>
+      <DTC id="F00051" code="U3000-51" description="ECU Calibration Is Not Programmed">
+        <Field name="Errortext shortname">ECU Calibration Is Not Programmed</Field>
+        <Field name="DS_DTCTestFailedCondition">1. { Set a factory status flag to indicate the factory state. This flag defaults to unprogrammed, and 0xF00051 shows the current DTC.
+   AND
+  When calibration data is successfully written to the ECU, the flag status changes to configured, and DTC 0xF00051 shows the historical DTC}
+OR
+2. 
+{ The flag status changes to unprogrammed, and 0xF00051 records the current DTC when the following conditions are met: 
+ The calibration data has been erased;
+ OR
+  The calibration data was not successfully written to the ECU.}</Field>
+        <Field name="DS_DTCTestPassedCondition">After the calibration data has been successfully written to ECU, 
+0xF00051 should be set to history DTC.</Field>
+        <Field name="DS_DTCTestFrequency">500 ms</Field>
+        <Field name="DS_DTCMonitorType">Continuous</Field>
+        <Field name="DS_DTCNumberOfTrips">1</Field>
+        <Field name="DS_DTCPriority">1</Field>
+        <Field name="DS_DTCAgingAllowed">supported</Field>
+        <Field name="DS_DTCAgingCycle">Sleep-Wakeup Cycle</Field>
+        <Field name="DS_DTCAgingCounter">10</Field>
+        <Field name="DS_DTCSeverity">noSeverity</Field>
+        <Field name="Monitor Initialization Function">not required</Field>
+        <Field name="DS_DTCFailureCorrection">Perform Sensor Configuration: Perform SW Update and DataSetDownload.</Field>
+        <Field name="DS_DTCDriverIndication">not active</Field>
+        <Field name="DS_DTCQualification">0s</Field>
+        <Field name="DS_DTCDequalification">0s</Field>
+        <Field name="DS_DTCTestEnableCriteria">failure.
+  "Vehicle State PowerMode" is '0x2: ON' for [ Err_StartUpSuppression ]
+AND 
+    System reset for [ Err_StartUpSuppression ] since after ECU is waken-up by NetWork Management
+AND    
+    ((Vehicle Battery Voltage is in accepted range (9V-16V)) 
+          OR 
+         (Vehicle Battery Voltage recovery from abnormal voltage for  [ Err_StartUpSuppression ] ))
+AND 
+    $85 with subfunction 0x02 (Off DTC) is Deactivate
+AND
+    CUSV_DynamometerEnable equals to Disable</Field>
+        <Field name="DS_DTCComments">SYS_EVENT_CONFIG_DATASET_ERROR</Field>
+        <Field name="DS_DTCFunctionalRestrictions">System Degradation: All Functions failure.</Field>
+        <Field name="DS_DTCSignificance">tbd</Field>
+        <Field name="DS_DTCEngineeringNotes">SYS_EVENT_CONFIG_DATASET_ERROR</Field>
+        <Field name="DS_DTCOperationCycle">DEM_IGNITION (Ignition ON / OFF Cycle)</Field>
+        <Field name="DS_DTCExistingExtendedDataRecordNumbers">tbd</Field>
+      </DTC>
+    </FaultMemory>
+  </DTCs>
+  <RIDs count="18">
+    <Variant name="Base Variant">
+      <RID id="0531" name="Sensor ID Lock or Unlock Control" qualifier="Sensor_ID_Lock_or_Unlock_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0531</Request>
+        <Request subFunction="Stop">31 02 0531</Request>
+        <Request subFunction="Request Results">31 03 0531</Request>
+        <Parameters group="Control Options (Start)">
+          <Parameter name="Sensor_ID Lock Unlock Control Option" />
+        </Parameters>
+        <Parameters group="Status (Start)">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+        <Parameters group="Status (Stop)">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+      </RID>
+      <RID id="0650" name="Bumper Repair Validation Control" qualifier="Bumper_Repair_Validation_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0650</Request>
+        <Request subFunction="Stop">31 02 0650</Request>
+        <Request subFunction="Request Results">31 03 0650</Request>
+        <Parameters group="Control Options (Start)">
+          <Parameter name="Maximum Radius" />
+          <Parameter name="Minimum Radius" />
+          <Parameter name="Minimum Number of events" />
+        </Parameters>
+        <Parameters group="Status (Start)">
+          <Parameter name="routineinfo" />
+        </Parameters>
+        <Parameters group="Status (Stop)">
+          <Parameter name="routineinfo" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="routineinfo" />
+          <Parameter name="Average RCS Overall" />
+          <Parameter name="Sector Information" />
+          <Parameter name="Odometer Value" />
+          <Parameter name="Bumper Validation Overall Status" />
+          <Parameter name="Bumper Validation Error Info" />
+        </Parameters>
+      </RID>
+      <RID id="0604" name="Sensor Alignment CDC Control" qualifier="Sensor_Alignment_CDC_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0604</Request>
+        <Request subFunction="Stop">31 02 0604</Request>
+        <Request subFunction="Request Results">31 03 0604</Request>
+        <Parameters group="Results">
+          <Parameter name="CDC Progress" />
+          <Parameter name="CDC Status" />
+          <Parameter name="CDC azimuth angle" />
+          <Parameter name="CDC elevation angle" />
+          <Parameter name="CDC roll angle" />
+          <Parameter name="Velocity Too High" />
+          <Parameter name="Velocity Too Low" />
+          <Parameter name="Yaw Rate Too High" />
+          <Parameter name="Acceleration Too High" />
+          <Parameter name="Rain Detect" />
+          <Parameter name="Interference Threshold Too High" />
+          <Parameter name="Paused by Diag" />
+          <Parameter name="Paused by Cust" />
+          <Parameter name="Blindness Detected" />
+          <Parameter name="Invalid Communication" />
+          <Parameter name="Invalid Detection List" />
+          <Parameter name="Invalid Input" />
+        </Parameters>
+      </RID>
+      <RID id="0603" name="Sensor Alignment AIC Control" qualifier="Sensor_Alignment_AIC_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0603</Request>
+        <Request subFunction="Stop">31 02 0603</Request>
+        <Request subFunction="Request Results">31 03 0603</Request>
+        <Parameters group="Results">
+          <Parameter name="AIC Progress" />
+          <Parameter name="AIC Status" />
+          <Parameter name="AIC azimuth angle" />
+          <Parameter name="AIC elevation angle" />
+          <Parameter name="AIC roll angle" />
+          <Parameter name="Velocity Too High" />
+          <Parameter name="Velocity Too Low" />
+          <Parameter name="Yaw Rate Too High" />
+          <Parameter name="Acceleration Too High" />
+          <Parameter name="Rain Detect" />
+          <Parameter name="Interference Threshold Too High" />
+          <Parameter name="Paused by Diag" />
+          <Parameter name="Paused by Cust" />
+          <Parameter name="Blindness Detected" />
+          <Parameter name="Invalid Communication" />
+          <Parameter name="Invalid Detection List" />
+          <Parameter name="Invalid Input" />
+        </Parameters>
+      </RID>
+      <RID id="0602" name="Sensor Alignment EOLC Control" qualifier="Sensor_Alignment_EOLC_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0602</Request>
+        <Request subFunction="Stop">31 02 0602</Request>
+        <Request subFunction="Request Results">31 03 0602</Request>
+        <Parameters group="Control Options (Start)">
+          <Parameter name="EOLC Mode" />
+          <Parameter name="EOLC Measurement Type" />
+          <Parameter name="EOLC Reference Type" />
+          <Parameter name="DopplerPositionXEOL" />
+          <Parameter name="DopplerPositionYEOL" />
+          <Parameter name="DopplerPositionZEOL" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="EOLC_Status" />
+          <Parameter name="Azimuth_Angle" />
+          <Parameter name="Elevation_Angle" />
+          <Parameter name="Target Average Azimuth Angle" />
+          <Parameter name="Target Average Elevation Angle" />
+          <Parameter name="Target Average Distance" />
+          <Parameter name="Target Average Signal Power" />
+          <Parameter name="Target Average SNR" />
+          <Parameter name="Target Average Speed" />
+          <Parameter name="Target Average Azimuth Angle Standard Deviation" />
+          <Parameter name="Target Average Elevation Angle Standard Deviation" />
+          <Parameter name="Target Average Speed Standard Deviation" />
+          <Parameter name="Target Average Azimuth Angle Quality" />
+          <Parameter name="Target Average Elevation Angle Quality" />
+          <Parameter name="Target Quality Indicator" />
+        </Parameters>
+      </RID>
+      <RID id="0601" name="Sensor Alignment SDC Control" qualifier="Sensor_Alignment_SDC_Control" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 0601</Request>
+        <Request subFunction="Stop">31 02 0601</Request>
+        <Request subFunction="Request Results">31 03 0601</Request>
+        <Parameters group="Results">
+          <Parameter name="SDC Progress" />
+          <Parameter name="SDC Status" />
+          <Parameter name="Velocity Too High" />
+          <Parameter name="Velocity Too Low" />
+          <Parameter name="Yaw Rate Too High" />
+          <Parameter name="Acceleration Too High" />
+          <Parameter name="Rain Detect" />
+          <Parameter name="Interference Threshold Too High" />
+          <Parameter name="Paused by Diag" />
+          <Parameter name="Paused by Cust" />
+          <Parameter name="Blindness Detected" />
+          <Parameter name="Invalid Communication" />
+          <Parameter name="Invalid Detection List" />
+          <Parameter name="Invalid Input" />
+          <Parameter name="SDC azimuth angle" />
+          <Parameter name="SDC elevation angle" />
+          <Parameter name="SDC roll angle" />
+        </Parameters>
+      </RID>
+    </Variant>
+    <Variant name="APP">
+      <RID id="0203" name="Programming Precondition Check" qualifier="Programming_Precondition_Check" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="Locked">
+        <Request subFunction="Start">31 01 0203</Request>
+        <Parameters group="Status (Start)">
+          <Parameter name="Routine Result" />
+        </Parameters>
+      </RID>
+      <RID id="0531" name="Lock and Unlock Sensor Identification" qualifier="Lock_and_Unlock_Sensor_Identification" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="Unlocked_0x1">
+        <Request subFunction="Start">31 01 0531</Request>
+        <Request subFunction="Stop">31 02 0531</Request>
+        <Request subFunction="Request Results">31 03 0531</Request>
+        <Parameters group="Control Options (Start)">
+          <Parameter name="Sensor_ID Lock Unlock Control Option" />
+        </Parameters>
+        <Parameters group="Status (Start)">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+        <Parameters group="Status (Stop)">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="Routine Status" />
+          <Parameter name="Routine Result" />
+        </Parameters>
+      </RID>
+      <RID id="DD04" name="Version switchover" qualifier="Version_switchover" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Unlocked_0x11, Unlocked_0x1">
+        <Request subFunction="Start">31 01 DD04</Request>
+        <Request subFunction="Request Results">31 03 DD04</Request>
+        <Parameters group="Status (Start)">
+          <Parameter name="Version Switch Result" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="Version Switch Result" />
+        </Parameters>
+      </RID>
+    </Variant>
+    <Variant name="Boot">
+      <RID id="DD0F" name="Switchover prevention" qualifier="Switchover_prevention" diagClass="Routine Control" sessions="ProgrammingSession" security="Locked, Unlocked_0x11">
+        <Request subFunction="Start">31 01 DD0F</Request>
+      </RID>
+      <RID id="DD03" name="Version installation" qualifier="Version_installation" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 DD03</Request>
+      </RID>
+      <RID id="DD01" name="Stay In Boot" qualifier="Stay_In_Boot" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 DD01</Request>
+      </RID>
+      <RID id="FF01" name="Programming Dependencies Check" qualifier="Programming_Dependencies_Check" diagClass="Routine Control" sessions="ProgrammingSession" security="Unlocked_0x11">
+        <Request subFunction="Start">31 01 FF01</Request>
+        <Parameters group="Status (Start)">
+          <Parameter name="Check Programming Dependencies Status" />
+        </Parameters>
+      </RID>
+      <RID id="FF00" name="EraseMemory" qualifier="EraseMemory" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 FF00</Request>
+      </RID>
+      <RID id="D005" name="Flash File Installation" qualifier="Flash_File_Installation" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 D005</Request>
+      </RID>
+      <RID id="DD02" name="Security signature" qualifier="Security_signature" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="-">
+        <Request subFunction="Start">31 01 DD02</Request>
+      </RID>
+      <RID id="0203" name="Programming Precondition Check" qualifier="Programming_Precondition_Check" diagClass="Routine Control" sessions="ExtendedDiagnosticSession" security="Locked">
+        <Request subFunction="Start">31 01 0203</Request>
+        <Parameters group="Status (Start)">
+          <Parameter name="Routine Result" />
+        </Parameters>
+      </RID>
+      <RID id="DD04" name="Version switchover" qualifier="Version_switchover" diagClass="Routine Control" sessions="ProgrammingSession, ExtendedDiagnosticSession" security="Unlocked_0x11, Unlocked_0x1">
+        <Request subFunction="Start">31 01 DD04</Request>
+        <Request subFunction="Request Results">31 03 DD04</Request>
+        <Parameters group="Status (Start)">
+          <Parameter name="Version Switch Result" />
+        </Parameters>
+        <Parameters group="Results">
+          <Parameter name="Version Switch Result" />
+        </Parameters>
+      </RID>
+    </Variant>
+  </RIDs>
+</CddExport>
