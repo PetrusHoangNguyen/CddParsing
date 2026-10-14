@@ -36,6 +36,29 @@ def text(elem, tag="NAME"):
     return (value or "").strip()
 
 
+DATA_TYPE_KINDS = {
+    "IDENT": "Identical",
+    "LINCOMP": "Linear",
+    "COMPTBL": "Piecewise linear",
+    "TEXTTBL": "Text table",
+    "STRUCTDT": "Structure",
+    "EOSITERDT": "Iteration until end",
+    "STATICITERRDT": "Static iteration",
+    "MUXDT": "Multiplexer",
+}
+ENCODINGS = {
+    "uns": "Unsigned", "sgn": "Signed", "asc": "ASCII", "bcd": "BCD",
+    "utf": "Unicode", "dbl": "Float64", "flt": "Float32",
+}
+DISPLAY_FORMATS = {"hex": "Hex", "dec": "Decimal", "bin": "Binary", "text": "Text", "flt": "Float"}
+BYTE_ORDERS = {"21": "Big endian (Motorola)", "12": "Little endian (Intel)"}
+
+
+def value_range(elem):
+    start, end = elem.get("s"), elem.get("e")
+    return start if start == end else f"{start}..{end}"
+
+
 def to_hex(value, n_bytes):
     return f"{value:0{n_bytes * 2}X}"
 
@@ -202,14 +225,9 @@ class CddFile:
         rows = []
         for did in self.doc.find("DIDS").findall("DID"):
             number = int(did.get("n"))
-            elements, min_bits, max_bits = [], 0, 0
-            for obj in did.find("STRUCTURE"):
-                lo, hi = self.bit_length(obj.get("dtref")) if obj.get("dtref") else (int(obj.get("bl", 0)),) * 2
-                if lo is None:
-                    min_bits = max_bits = None
-                elif min_bits is not None:
-                    min_bits, max_bits = min_bits + lo, max_bits + hi
-                elements.append(f"{text(obj)} [{lo if lo == hi else f'{lo}..{hi}'} bit]")
+            elements = list(self.data_elements(did.find("STRUCTURE")))
+            min_bits = sum(e["_min"] for e in elements if e["_top"]) if all(e["_min"] is not None for e in elements) else None
+            max_bits = sum(e["_max"] for e in elements if e["_top"]) if min_bits is not None else None
             if min_bits is None:
                 length = "?"
             elif min_bits == max_bits:
@@ -219,21 +237,98 @@ class CddFile:
             variants = did_variants.get(did.get("id"), [])
             read = next((access[k] for k in ((v, number, READ_DID_SID) for v in variants) if k in access), None)
             write = next((access[k] for k in ((v, number, WRITE_DID_SID) for v in variants) if k in access), None)
-            rows.append({
+            did_columns = {
                 "DID": to_hex(number, 2),
                 "Name": text(did),
                 "Qualifier": did.findtext("QUAL") or "",
                 "Variants": ", ".join(variants),
                 "Length (bytes)": length,
-                "Data Elements": "\n".join(elements),
+            }
+            access_columns = {
                 "Read (22)": "Yes" if read else "No",
                 "Read Sessions": read[0] if read else "",
                 "Read Security": read[1] if read else "",
                 "Write (2E)": "Yes" if write else "No",
                 "Write Sessions": write[0] if write else "",
                 "Write Security": write[1] if write else "",
-            })
+            }
+            # One row per data element, with the DID columns repeated so the sheet can be filtered.
+            for element in elements or [{}]:
+                rows.append({**did_columns, **{k: v for k, v in element.items() if not k.startswith("_")}, **access_columns})
         return rows
+
+    def data_elements(self, structure, prefix="", start_bit=0):
+        """Yield one dict per data element of a DID structure, descending into nested structures."""
+        position = start_bit
+        for obj in structure if structure is not None else []:
+            if obj.tag not in ("DATAOBJ", "STRUCT", "GAPDATAOBJ"):
+                continue
+            name = f"{prefix}{text(obj)}"
+            if obj.tag == "GAPDATAOBJ":
+                lo = hi = int(obj.get("bl", 0))
+                details = {"Data Type": "Gap (reserved)"}
+            else:
+                lo, hi = self.bit_length(obj.get("dtref"))
+                details = self.type_details(self.ids.get(obj.get("dtref")))
+            yield {
+                "Data Element": name,
+                "Element Qualifier": obj.findtext("QUAL") or "",
+                "Start Byte": position // 8 if position is not None else "?",
+                "Start Bit": position % 8 if position is not None else "?",
+                "Bit Length": "?" if lo is None else (lo if lo == hi else f"{lo}..{hi}"),
+                **details,
+                "_min": lo, "_max": hi, "_top": not prefix,
+            }
+            # Children of an inline STRUCT or of a structured data type, positioned inside the parent.
+            children = obj if obj.tag == "STRUCT" else self.ids.get(obj.get("dtref"))
+            if children is not None and children.tag in ("STRUCT", "STRUCTDT", "EOSITERDT", "STATICITERRDT"):
+                inner = children.find("STRUCT") if children.tag == "STRUCTDT" else children
+                yield from self.data_elements(inner, f"{name} / ", position)
+            position = position + lo if position is not None and lo is not None and lo == hi else None
+
+    def type_details(self, dtype):
+        """Describe a CANdela data type: kind, coded and physical value, conversion, unit and value table."""
+        if dtype is None:
+            return {}
+        cvt, pvt = dtype.find("CVALUETYPE"), dtype.find("PVALUETYPE")
+        details = {
+            "Data Type": f"{DATA_TYPE_KINDS.get(dtype.tag, dtype.tag)}: {text(dtype)}",
+            "Coded Type": self.value_type(cvt),
+            "Byte Order": BYTE_ORDERS.get(cvt.get("bo"), cvt.get("bo")) if cvt is not None else "",
+            "Physical Type": self.value_type(pvt),
+            "Display Format": DISPLAY_FORMATS.get(pvt.get("df"), pvt.get("df")) if pvt is not None else "",
+            "Conversion": "",
+            "Unit": (pvt.findtext("UNIT") or "") if pvt is not None else "",
+            "Value Table": "",
+            "Invalid Values": "",
+        }
+        conversions = []
+        for comp in dtype.findall("COMP"):
+            parts = [f"factor {comp.get('f', '1')}"]
+            if comp.get("div"):
+                parts.append(f"divisor {comp.get('div')}")
+            parts.append(f"offset {comp.get('o', '0')}")
+            conversion = ", ".join(parts)
+            if comp.get("s") is not None or comp.get("e") is not None:
+                conversion = f"raw {comp.get('s', '')}..{comp.get('e', '')}: {conversion}"
+            conversions.append(conversion)
+        details["Conversion"] = "\n".join(conversions)
+        details["Value Table"] = "\n".join(
+            f"{value_range(m)} = {text(m, 'TEXT')}" for m in dtype.findall("TEXTMAP"))
+        details["Invalid Values"] = "\n".join(
+            f"{value_range(x)} ({x.get('inv', 'invalid')})" for x in dtype.findall("EXCL"))
+        return details
+
+    @staticmethod
+    def value_type(vt):
+        """Describe a CVALUETYPE/PVALUETYPE, e.g. 'Unsigned 16 bit' or 'ASCII 8 bit x 17'."""
+        if vt is None:
+            return ""
+        desc = f"{ENCODINGS.get(vt.get('enc'), vt.get('enc'))} {vt.get('bl')} bit"
+        if vt.get("qty") == "field":
+            lo, hi = vt.get("minsz"), vt.get("maxsz")
+            desc += f" x {lo}" if lo == hi else f" x {lo}..{hi}"
+        return desc
 
     def dtcs(self):
         # Keep the record fields in the order of the DTC record templates.
