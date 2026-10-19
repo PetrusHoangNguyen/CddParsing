@@ -1,13 +1,13 @@
-"""Parse a Vector CANdela Studio CDD file and export its diagnostic data to a simple XML file.
+"""Parse a Vector CANdela Studio CDD file and export its diagnostic data to XML or Excel.
 
-The XML has four sections:
+The output has four sections (XML) or sheets (Excel):
     Services  every diagnostic service of every variant, with request bytes and access rights
     DIDs      every data identifier with its data elements, data types and read/write access
     DTCs      every DTC of every fault memory, with the DTC record fields
     RIDs      every routine identifier with its sub-functions and parameters
 
 Usage:
-    python cdd_parser.py <file.cdd> [-o <output.xml>]
+    python cdd_parser.py <file.cdd> [--format xml|excel] [-o <output file>]
 """
 
 import argparse
@@ -379,7 +379,8 @@ def add(parent, tag, **attrs):
     return child
 
 
-def export(cdd_path, xml_path):
+def build_export(cdd_path):
+    """Parse a CDD file into the export tree. Returns (root element, counts per section)."""
     cdd = CddFile(cdd_path)
     root = ET.Element("CddExport", source=cdd.path.name, ecu=text(cdd.doc.find("ECU")))
     sections = {"Services": cdd.services(), "DIDs": cdd.dids(), "DTCs": cdd.dtcs(), "RIDs": cdd.rids()}
@@ -392,18 +393,150 @@ def export(cdd_path, xml_path):
     for name, section in sections.items():
         section.set("count", str(counts[name]))
         root.append(section)
+    return root, counts
+
+
+def write_xml(root, xml_path):
     ET.indent(root, space="  ")
     ET.ElementTree(root).write(xml_path, encoding="utf-8", xml_declaration=True)
+
+
+# ---------- Excel output ----------
+
+def headers(attrs, names):
+    """Rename XML attributes to column titles, e.g. {'sid': ...} -> {'SID': ...}."""
+    return {names.get(key, key[:1].upper() + key[1:]): value for key, value in attrs.items()}
+
+
+SERVICE_COLUMNS = {"sid": "SID", "request": "Request", "diagClass": "Diag Class", "instance": "Diag Instance",
+                   "name": "Service", "protocolService": "Protocol Service"}
+DID_COLUMNS = {"id": "DID", "length": "Length (bytes)"}
+ELEMENT_COLUMNS = {"name": "Data Element", "qualifier": "Element Qualifier", "startByte": "Start Byte",
+                   "startBit": "Start Bit", "bitLength": "Bit Length", "dataType": "Data Type",
+                   "codedType": "Coded Type", "byteOrder": "Byte Order", "physicalType": "Physical Type",
+                   "displayFormat": "Display Format"}
+RID_COLUMNS = {"id": "RID", "diagClass": "Diag Class"}
+
+
+def element_rows(parent, prefix=""):
+    """Flatten (nested) DataElements into rows, naming children 'Parent / Child'."""
+    for element in parent.findall("DataElement"):
+        row = headers(element.attrib, ELEMENT_COLUMNS)
+        row["Data Element"] = prefix + element.get("name", "")
+        row["Conversion"] = "\n".join(
+            (f"raw {c.get('raw')}: " if c.get("raw") else "")
+            + ", ".join(f"{k} {c.get(k)}" for k in ("factor", "divisor", "offset") if c.get(k))
+            for c in element.findall("Conversion"))
+        row["Unit"] = row.pop("Unit", "")
+        row["Value Table"] = "\n".join(f"{v.get('raw')} = {v.text}" for v in element.findall("Value"))
+        row["Invalid Values"] = "\n".join(f"{v.get('raw')} ({v.text})" for v in element.findall("Invalid"))
+        yield row
+        yield from element_rows(element, row["Data Element"] + " / ")
+
+
+def excel_sheets(root):
+    """Turn the export tree into one list of row dicts per sheet."""
+    services = [{"Variant": variant.get("name"), **headers(service.attrib, SERVICE_COLUMNS)}
+                for variant in root.find("Services") for service in variant]
+
+    dids = []
+    for did in root.find("DIDs"):
+        did_columns = headers({k: v for k, v in did.attrib.items()}, DID_COLUMNS)
+        access = {}
+        for label, sid in (("Read", "22"), ("Write", "2E")):
+            node = did.find(label)
+            access[f"{label} ({sid})"] = "Yes" if node is not None else "No"
+            access[f"{label} Sessions"] = node.get("sessions", "") if node is not None else ""
+            access[f"{label} Security"] = node.get("security", "") if node is not None else ""
+        for element in list(element_rows(did)) or [{}]:
+            dids.append({**did_columns, **element, **access})
+
+    dtcs = []
+    for memory in root.find("DTCs"):
+        for dtc in memory:
+            row = {"Variant": memory.get("variant"), "Fault Memory": memory.get("name", ""),
+                   "DTC": dtc.get("id"), "DTC Code": dtc.get("code"), "Description": dtc.get("description", "")}
+            row.update((field.get("name"), field.text) for field in dtc.findall("Field"))
+            dtcs.append(row)
+
+    rids = []
+    for variant in root.find("RIDs"):
+        for rid in variant:
+            row = {"Variant": variant.get("name"), **headers(rid.attrib, RID_COLUMNS)}
+            row["Requests"] = "\n".join(f"{r.get('subFunction')}: {r.text}" for r in rid.findall("Request"))
+            row["Parameters"] = "\n".join(
+                f"{p.get('group')}: {', '.join(x.get('name') for x in p)}" for p in rid.findall("Parameters"))
+            row["Description"] = rid.findtext("Description", "")
+            rids.append(row)
+
+    return {"Service": services, "DID": dids, "DTC": dtcs, "RID": rids}
+
+
+NUMERIC_COLUMNS = {"Start Byte", "Start Bit", "Bit Length", "Length (bytes)"}
+
+
+def excel_value(sheet, column, value):
+    """Store counts and lengths as numbers; hex identifiers such as DID, SID or DTC stay text."""
+    numeric = column in NUMERIC_COLUMNS or (sheet == "DTC" and column not in ("DTC", "DTC Code"))
+    if numeric and isinstance(value, str) and value.isdigit():
+        return int(value)
+    return value if value is not None else ""
+
+
+def write_excel(root, xlsx_path):
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError:
+        sys.exit("Excel output needs openpyxl: pip install openpyxl")
+
+    workbook = Workbook()
+    workbook.remove(workbook.active)
+    for title, rows in excel_sheets(root).items():
+        sheet = workbook.create_sheet(title)
+        # The fullest row gives the column order; columns only some rows have go after it.
+        columns = []
+        for row in sorted(rows, key=len, reverse=True):
+            columns.extend(c for c in row if c not in columns)
+        sheet.append(columns)
+        for row in rows:
+            sheet.append([excel_value(title, c, row.get(c)) for c in columns])
+        for cell in sheet[1]:
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = PatternFill("solid", fgColor="1F4E78")
+            cell.alignment = Alignment(vertical="center", wrap_text=True)
+        for row in sheet.iter_rows(min_row=2):
+            for cell in row:
+                cell.alignment = Alignment(vertical="top", wrap_text=True)
+        for index, column in enumerate(columns, start=1):
+            longest = max([len(column)] + [max((len(line) for line in str(r.get(column) or "").split("\n")), default=0)
+                                           for r in rows])
+            sheet.column_dimensions[get_column_letter(index)].width = min(max(10, longest + 2), 60)
+        sheet.freeze_panes = "A2"
+        if rows:
+            sheet.auto_filter.ref = sheet.dimensions
+    workbook.save(xlsx_path)
+
+
+WRITERS = {"xml": (write_xml, ".xml"), "excel": (write_excel, ".xlsx")}
+
+
+def export(cdd_path, output_path, output_format="xml"):
+    root, counts = build_export(cdd_path)
+    WRITERS[output_format][0](root, output_path)
     return counts
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Export DIDs, DTCs, RIDs and services of a CDD file to XML.")
+    parser = argparse.ArgumentParser(description="Export DIDs, DTCs, RIDs and services of a CDD file to XML or Excel.")
     parser.add_argument("cdd", help="path to the .cdd file")
-    parser.add_argument("-o", "--output", help="output .xml path (default: <cdd name>.xml next to the CDD)")
+    parser.add_argument("-f", "--format", choices=sorted(WRITERS), default="xml",
+                        help="output format (default: xml)")
+    parser.add_argument("-o", "--output", help="output file path (default: <cdd name>.xml or .xlsx next to the CDD)")
     args = parser.parse_args(argv)
-    output = args.output or str(Path(args.cdd).with_suffix(".xml"))
-    counts = export(args.cdd, output)
+    output = args.output or str(Path(args.cdd).with_suffix(WRITERS[args.format][1]))
+    counts = export(args.cdd, output, args.format)
     print(f"Wrote {output}")
     for name, count in counts.items():
         print(f"  {name}: {count}")

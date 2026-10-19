@@ -1,14 +1,32 @@
 # Cdd Parsing
 
-`cdd_parser.py` reads a CDD file exported from Vector CANdela Studio and writes its diagnostic data to one easy-to-read XML file. It needs only Python 3.9 or newer, with no extra packages.
+`cdd_parser.py` reads a CDD file exported from Vector CANdela Studio and writes its diagnostic data (services, DIDs, DTCs and RIDs) to either an XML file or an Excel workbook. It needs Python 3.9 or newer. XML output uses only the standard library; Excel output also needs `openpyxl` (`pip install -r requirements.txt`).
 
 ```
+# XML (default)
 python cdd_parser.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd -o RADAR_G7_CHERY03_APP_and_BOOT.xml
+
+# Excel
+python cdd_parser.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd --format excel -o RADAR_G7_CHERY03_APP_and_BOOT.xlsx
 ```
 
-Without `-o`, the XML is written next to the CDD file with the `.xml` extension.
+| Option | Meaning |
+|--------|---------|
+| `-f`, `--format` | `xml` (default) or `excel` |
+| `-o`, `--output` | output file; without it the file is written next to the CDD as `<name>.xml` or `<name>.xlsx` |
 
-## Output layout
+## Excel layout
+
+| Sheet   | One row per | Main columns |
+|---------|-------------|--------------|
+| Service | service of a diagnostic instance, per variant | SID, request bytes, addressing, sessions, security |
+| DID     | data element of a DID | DID, variants, length, element position and bit length, data type details, read/write access |
+| DTC     | DTC record of a fault memory | DTC, SAE code (e.g. `U0418-81`), description, all DTC record fields |
+| RID     | routine of `$31 RoutineControl` | RID, sub-functions with request bytes, sessions, security, parameters |
+
+Both formats carry the same data: the Excel sheets are built from the XML tree.
+
+## XML layout
 
 ```xml
 <CddExport source="..." ecu="...">
