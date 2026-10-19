@@ -195,7 +195,8 @@ class CddFile:
                         protocolService=text(self.protocol_service(service)),
                         addressing=", ".join(addressing),
                         sessions=sessions,
-                        security=security)
+                        security=security,
+                        ref=f'{service.get("id")}@{variant.get("id")}')
         return section
 
     def dids(self):
@@ -220,12 +221,12 @@ class CddFile:
             number = int(did.get("n"))
             variants = did_variants.get(did.get("id"), [])
             node = add(section, "DID", id=to_hex(number, 2), name=text(did), qualifier=did.findtext("QUAL") or "",
-                       variants=", ".join(variants))
+                       variants=", ".join(variants), ref=did.get("id"))
             for label, sid in (("Read", READ_DID_SID), ("Write", WRITE_DID_SID)):
                 found = next((access[k] for k in ((v, number, sid) for v in variants) if k in access), None)
                 if found:
                     add(node, label, sid=to_hex(sid, 1), sessions=found[0], security=found[1])
-            min_bits, max_bits = self.add_data_elements(node, did.find("STRUCTURE"))
+            min_bits, max_bits = self.add_data_elements(node, did.find("STRUCTURE"), ref_prefix=did.get("id") + ":")
             if min_bits is None:
                 length = "?"
             elif min_bits == max_bits:
@@ -235,14 +236,13 @@ class CddFile:
             node.set("length", length)
         return section
 
-    def add_data_elements(self, parent, structure, start_bit=0):
+    def add_data_elements(self, parent, structure, start_bit=0, ref_prefix=""):
         """Add a DataElement per element of a structure, descending into nested structures.
 
+        Each element gets a ref '<DID id>:<index>[.<index>...]' that excel_to_cdd.py uses to find it again.
         Returns the (min, max) bit length of the structure, or (None, None) if unknown."""
         position, min_total, max_total = start_bit, 0, 0
-        for obj in structure if structure is not None else []:
-            if obj.tag not in ("DATAOBJ", "STRUCT", "GAPDATAOBJ"):
-                continue
+        for index, obj in enumerate(structure_elements(structure)):
             if obj.tag == "GAPDATAOBJ":
                 lo = hi = int(obj.get("bl", 0))
                 dtype = None
@@ -254,16 +254,16 @@ class CddFile:
                           qualifier=obj.findtext("QUAL") or "",
                           startByte=position // 8 if position is not None else "?",
                           startBit=position % 8 if position is not None else "?",
-                          bitLength="?" if lo is None else (lo if lo == hi else f"{lo}..{hi}"))
+                          bitLength="?" if lo is None else (lo if lo == hi else f"{lo}..{hi}"),
+                          ref=f"{ref_prefix}{index}")
             if obj.tag == "GAPDATAOBJ":
                 element.set("dataType", "Gap (reserved)")
             else:
                 self.add_type_details(element, dtype)
             # Children of an inline STRUCT or of a structured data type, positioned inside the parent.
-            children = obj if obj.tag == "STRUCT" else dtype
-            if children is not None and children.tag in ("STRUCT", "STRUCTDT", "EOSITERDT", "STATICITERRDT"):
-                inner = children.find("STRUCT") if children.tag == "STRUCTDT" else children
-                self.add_data_elements(element, inner, position)
+            inner = nested_structure(obj, dtype)
+            if inner is not None:
+                self.add_data_elements(element, inner, position, f"{ref_prefix}{index}.")
             if lo is None or min_total is None:
                 min_total = max_total = None
             else:
@@ -321,7 +321,8 @@ class CddFile:
             group = add(section, "FaultMemory", variant=variant, name=memory)
             for record in records:
                 number = int(record.get("v"))
-                dtc = add(group, "DTC", id=to_hex(number, 3), code=dtc_code(number), description=text(record, "TEXT"))
+                dtc = add(group, "DTC", id=to_hex(number, 3), code=dtc_code(number), description=text(record, "TEXT"),
+                          ref=record.get("id"))
                 for item in record:
                     tmpl = self.ref(item, "idref")
                     if tmpl is None:
@@ -354,7 +355,7 @@ class CddFile:
                 sessions, security = self.access(services[0])
                 rid = add(group, "RID", id=to_hex(int(sv.get("v")), 2), name=text(inst),
                           qualifier=inst.findtext("QUAL") or "", diagClass=diag_class,
-                          sessions=sessions, security=security)
+                          sessions=sessions, security=security, ref=f'{inst.get("id")}@{variant.get("id")}')
                 if text(inst, "DESC"):
                     add(rid, "Description").text = text(inst, "DESC")
                 for service, _, request in requests:
@@ -364,6 +365,21 @@ class CddFile:
                     for name in names:
                         add(params, "Parameter", name=name)
         return section
+
+
+def structure_elements(structure):
+    """The data elements of a STRUCTURE, STRUCT or iteration, in order."""
+    if structure is None:
+        return []
+    return [obj for obj in structure if obj.tag in ("DATAOBJ", "STRUCT", "GAPDATAOBJ")]
+
+
+def nested_structure(obj, dtype):
+    """The element list inside an inline STRUCT or a structured data type, or None for a plain value."""
+    container = obj if obj.tag == "STRUCT" else dtype
+    if container is None or container.tag not in ("STRUCT", "STRUCTDT", "EOSITERDT", "STATICITERRDT"):
+        return None
+    return container.find("STRUCT") if container.tag == "STRUCTDT" else container
 
 
 def set_attrs(elem, **attrs):
@@ -397,6 +413,9 @@ def build_export(cdd_path):
 
 
 def write_xml(root, xml_path):
+    # The refs only link Excel rows back to the CDD; they would clutter the XML.
+    for elem in root.iter():
+        elem.attrib.pop("ref", None)
     ET.indent(root, space="  ")
     ET.ElementTree(root).write(xml_path, encoding="utf-8", xml_declaration=True)
 
@@ -405,7 +424,13 @@ def write_xml(root, xml_path):
 
 def headers(attrs, names):
     """Rename XML attributes to column titles, e.g. {'sid': ...} -> {'SID': ...}."""
-    return {names.get(key, key[:1].upper() + key[1:]): value for key, value in attrs.items()}
+    return {names.get(key, key[:1].upper() + key[1:]): value for key, value in attrs.items() if key != "ref"}
+
+
+# Hidden-in-plain-sight columns that let excel_to_cdd.py find each row's element in the CDD again.
+REF_COLUMN = "CDD Ref"
+DID_REF_COLUMN = "DID Ref"
+ELEMENT_REF_COLUMN = "Element Ref"
 
 
 SERVICE_COLUMNS = {"sid": "SID", "request": "Request", "diagClass": "Diag Class", "instance": "Diag Instance",
@@ -430,13 +455,15 @@ def element_rows(parent, prefix=""):
         row["Unit"] = row.pop("Unit", "")
         row["Value Table"] = "\n".join(f"{v.get('raw')} = {v.text}" for v in element.findall("Value"))
         row["Invalid Values"] = "\n".join(f"{v.get('raw')} ({v.text})" for v in element.findall("Invalid"))
+        row[ELEMENT_REF_COLUMN] = element.get("ref", "")
         yield row
         yield from element_rows(element, row["Data Element"] + " / ")
 
 
 def excel_sheets(root):
     """Turn the export tree into one list of row dicts per sheet."""
-    services = [{"Variant": variant.get("name"), **headers(service.attrib, SERVICE_COLUMNS)}
+    services = [{"Variant": variant.get("name"), **headers(service.attrib, SERVICE_COLUMNS),
+                 REF_COLUMN: service.get("ref", "")}
                 for variant in root.find("Services") for service in variant]
 
     dids = []
@@ -448,8 +475,10 @@ def excel_sheets(root):
             access[f"{label} ({sid})"] = "Yes" if node is not None else "No"
             access[f"{label} Sessions"] = node.get("sessions", "") if node is not None else ""
             access[f"{label} Security"] = node.get("security", "") if node is not None else ""
-        for element in list(element_rows(did)) or [{}]:
-            dids.append({**did_columns, **element, **access})
+        for element in list(element_rows(did)) or [{ELEMENT_REF_COLUMN: ""}]:
+            element_ref = element.pop(ELEMENT_REF_COLUMN)
+            dids.append({**did_columns, **element, **access,
+                         DID_REF_COLUMN: did.get("ref", ""), ELEMENT_REF_COLUMN: element_ref})
 
     dtcs = []
     for memory in root.find("DTCs"):
@@ -457,6 +486,7 @@ def excel_sheets(root):
             row = {"Variant": memory.get("variant"), "Fault Memory": memory.get("name", ""),
                    "DTC": dtc.get("id"), "DTC Code": dtc.get("code"), "Description": dtc.get("description", "")}
             row.update((field.get("name"), field.text) for field in dtc.findall("Field"))
+            row[REF_COLUMN] = dtc.get("ref", "")
             dtcs.append(row)
 
     rids = []
@@ -467,6 +497,7 @@ def excel_sheets(root):
             row["Parameters"] = "\n".join(
                 f"{p.get('group')}: {', '.join(x.get('name') for x in p)}" for p in rid.findall("Parameters"))
             row["Description"] = rid.findtext("Description", "")
+            row[REF_COLUMN] = rid.get("ref", "")
             rids.append(row)
 
     return {"Service": services, "DID": dids, "DTC": dtcs, "RID": rids}
@@ -499,6 +530,8 @@ def write_excel(root, xlsx_path):
         columns = []
         for row in sorted(rows, key=len, reverse=True):
             columns.extend(c for c in row if c not in columns)
+        refs = [c for c in (DID_REF_COLUMN, ELEMENT_REF_COLUMN, REF_COLUMN) if c in columns]
+        columns = [c for c in columns if c not in refs] + refs
         sheet.append(columns)
         for row in rows:
             sheet.append([excel_value(title, c, row.get(c)) for c in columns])

@@ -24,7 +24,39 @@ python cdd_parser.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd --format excel -o RADA
 | DTC     | DTC record of a fault memory | DTC, SAE code (e.g. `U0418-81`), description, all DTC record fields |
 | RID     | routine of `$31 RoutineControl` | RID, sub-functions with request bytes, sessions, security, parameters |
 
-Both formats carry the same data: the Excel sheets are built from the XML tree.
+Both formats carry the same data: the Excel sheets are built from the XML tree. The last columns of each sheet (`CDD Ref`, `DID Ref`, `Element Ref`) link each row to its element in the CDD; `excel_to_cdd.py` needs them, so leave them as they are.
+
+## Editing the Excel file and writing a new CDD
+
+`excel_to_cdd.py` takes the original CDD and an Excel file exported from it, and writes a new CDD with your edits:
+
+```
+python cdd_parser.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd --format excel -o export.xlsx
+# edit export.xlsx
+python excel_to_cdd.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd export.xlsx -o RADAR_G7_CHERY03_edited.cdd --report report.txt
+```
+
+The original CDD is the template. Only the values you changed are rewritten in place; everything else, including ids, references, quotes and line endings, stays byte for byte the same. Running it on an unedited export gives a file identical to the original.
+
+| Sheet | Editable columns |
+|-------|------------------|
+| Service | Sessions, Security, Addressing |
+| DID | DID, Name, Qualifier, Read/Write Sessions and Security, Data Element, Element Qualifier, Conversion, Unit, Value Table (texts only) |
+| DTC | DTC or DTC Code, Description, and every DTC record field the DTC already has |
+| RID | RID, Name, Qualifier, Description, Sessions, Security |
+
+All other columns are computed from the CDD and are read-only. Adding or deleting rows is not supported yet.
+
+How some edits are applied:
+
+- **Sessions / Security** take state names separated by commas, `All`, or `-` for none. A routine's sessions and security apply to all its sub-functions.
+- **DID number** also updates the identifier of the read, write and IO control services that use the DID.
+- **Conversion, Unit and Value Table** belong to the data type, which can be shared with other DIDs. Other rows that change with it are listed as warnings.
+- Services shared between variants (for example Tester Present) change in every variant that uses them.
+
+The script prints a report. Errors name the sheet, row and column, for example an unknown session name, a value that is not hex, a duplicate DID or DTC number, an edit to a read-only column, or a new or deleted row. **If there is any error, no CDD is written.** After writing, the script reads the new CDD back and checks that every edit is in it. Warnings list other rows that changed as a side effect, and `CHANGED` lines list each applied edit.
+
+CANdela Studio itself is not run by the script: open the new CDD in CANdela to confirm the import.
 
 ## XML layout
 
