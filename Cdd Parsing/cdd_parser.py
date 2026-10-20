@@ -406,10 +406,38 @@ def build_export(cdd_path):
         "DTCs": len(sections["DTCs"].findall("FaultMemory/DTC")),
         "RIDs": len(sections["RIDs"].findall("Variant/RID")),
     }
+    sort_export(sections)
     for name, section in sections.items():
         section.set("count", str(counts[name]))
         root.append(section)
     return root, counts
+
+
+def hex_key(value):
+    try:
+        return int(value or "", 16)
+    except ValueError:
+        return -1
+
+
+def sort_children(parent, key):
+    children = sorted(parent, key=key)  # stable: equal keys keep their CDD order
+    for child in list(parent):
+        parent.remove(child)
+    parent.extend(children)
+
+
+def sort_export(sections):
+    """Sort services by SID and request bytes, DIDs by number, DTCs by number and RIDs by number.
+
+    Services, DTCs and RIDs stay grouped by variant or fault memory."""
+    for variant in sections["Services"]:
+        sort_children(variant, lambda s: (hex_key(s.get("sid")), s.get("request", "")))
+    sort_children(sections["DIDs"], lambda d: (hex_key(d.get("id")), d.get("variants", "")))
+    for memory in sections["DTCs"]:
+        sort_children(memory, lambda d: hex_key(d.get("id")))
+    for variant in sections["RIDs"]:
+        sort_children(variant, lambda r: hex_key(r.get("id")))
 
 
 def write_xml(root, xml_path):
