@@ -15,6 +15,8 @@ python cdd_parser.py ../RADAR_G7_CHERY03_APP_and_BOOT.cdd --format excel -o RADA
 | `-f`, `--format` | `xml` (default) or `excel` |
 | `-o`, `--output` | output file; without it the file is written next to the CDD as `<name>.xml` or `<name>.xlsx` |
 
+Both formats list everything sorted: services by SID and request bytes within each variant, DIDs by DID number, DTCs by DTC number within each fault memory, and RIDs by RID number within each variant.
+
 ## Excel layout
 
 | Sheet   | One row per | Main columns |
